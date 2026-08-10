@@ -1,0 +1,13 @@
+# Ignore everything by default.
+*
+
+# Keep the ignore file itself tracked.
+!/.gitignore
+
+# Keep only the blossom-pin and blossom-pinit theme trees.
+!/wp-content/
+!/wp-content/themes/
+!/wp-content/themes/blossom-pin/
+!/wp-content/themes/blossom-pin/**
+!/wp-content/themes/blossom-pinit/
+!/wp-content/themes/blossom-pinit/**
