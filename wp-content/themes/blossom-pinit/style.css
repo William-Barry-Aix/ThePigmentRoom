@@ -569,9 +569,25 @@ Tags: blog,one-column,two-columns,right-sidebar,left-sidebar,footer-widgets,cust
  }
 
  @media only screen and (max-width: 1024px){
+    .banner-layout-two {
+        width: 100vw;
+        min-height: calc(100vh - var(--banner-offset));
+        min-height: calc(100svh - var(--banner-offset));
+        height: calc(100vh - var(--banner-offset));
+        height: calc(100svh - var(--banner-offset));
+    }
+
+    .banner-layout-two .owl-stage-outer,
+    .banner-layout-two .owl-stage,
     .banner-layout-two .owl-item,
     .banner-layout-two .item {
-        width: 100% !important;
+        width: 100vw !important;
+        max-width: 100vw;
+    }
+
+    .banner-layout-two .item img {
+        width: 100%;
+        max-width: none;
     }
  }
 
