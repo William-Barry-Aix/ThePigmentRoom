@@ -135,6 +135,12 @@ jQuery(document).ready(function($){
     blossomPinitSetBannerOffset();
     $window.on('resize orientationchange', blossomPinitSetBannerOffset);
 
+    $window.on('resize orientationchange', function() {
+        window.requestAnimationFrame(function() {
+            $bannerSlider.trigger('refresh.owl.carousel');
+        });
+    });
+
     function blossomPinitGetAdminBarHeight() {
         var $adminBar = $('#wpadminbar');
 
