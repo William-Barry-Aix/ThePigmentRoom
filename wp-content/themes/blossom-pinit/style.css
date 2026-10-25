@@ -41,13 +41,17 @@ Tags: blog,one-column,two-columns,right-sidebar,left-sidebar,footer-widgets,cust
 
  .header-layout-two {
     padding: 0;
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
 }
 
 .header-layout-two .header-t {
     background-size: cover !important;
     text-align: center;
     padding: 30px 0 25px;
+    flex: 0 0 auto;
 }
 
 .header-layout-two .site-branding {
@@ -103,11 +107,14 @@ Tags: blog,one-column,two-columns,right-sidebar,left-sidebar,footer-widgets,cust
 .header-layout-two .header-b {
     background: #fff;
     padding: 18px 0 17px;
+    flex: 1 1 auto;
+    min-width: 0;
 }
 
 .header-layout-two .main-navigation {
-    float: left;
+    float: right;
     width: auto;
+    text-align: right;
 }
 
 .header-layout-two .main-navigation ul ul {
@@ -123,21 +130,64 @@ Tags: blog,one-column,two-columns,right-sidebar,left-sidebar,footer-widgets,cust
     width: auto;
 }
 
+#mobile-primary-menu>div>ul {
+    padding: 0;
+    margin: 0 auto;
+    width: fit-content;
+}
+
+.header-layout-two .desktop-booking-button {
+    float: right;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 18px 0 0;
+    padding: 8px 18px;
+    border: 1px solid #7b391a;
+    border-radius: 999px;
+    color: #7b391a;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+.header-layout-two .desktop-booking-button:hover,
+.header-layout-two .desktop-booking-button:focus {
+    background: #7b391a;
+    color: #fff;
+}
+
+@media only screen and (max-width: 1024px) {
+    .header-layout-two {
+        display: block;
+    }
+
+    .header-layout-two .desktop-booking-button {
+        display: none;
+    }
+
+    .header-layout-two .header-t,
+    .header-layout-two .header-b {
+        width: 100%;
+    }
+}
+
 /*======================================
  Banner Layout two Style
  =====================================*/
 
  .banner-layout-two {
      padding-top: 0;
-     max-width: 900px;
-     width: calc(100% - 80px);
     margin-left: auto;
     margin-right: auto;
     overflow: hidden;
-    min-height: calc(100vh * 4 / 6);
-    min-height: calc(100dvh * 4 / 6);
-    height: calc(100vh * 4 / 6);
-    height: calc(100dvh * 4 / 6);
+    --banner-offset: 181px;
+    min-height: calc(100vh - var(--banner-offset));
+    min-height: calc(100dvh - var(--banner-offset));
+    height: calc(100vh - var(--banner-offset));
+    height: calc(100dvh - var(--banner-offset));
 }
 
 .banner-layout-two .owl-stage-outer,
@@ -150,47 +200,17 @@ Tags: blog,one-column,two-columns,right-sidebar,left-sidebar,footer-widgets,cust
     vertical-align: top;
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: cover;
     object-position: center;
-    border-radius: 12px;
 }
 
 .banner-layout-two .item {
     position: relative;
+    width: calc((100vh - var(--banner-offset)) * 9 / 16);
+    width: calc((100dvh - var(--banner-offset)) * 9 / 16);
     height: 100%;
-    background: var(--primary-color);
-    border-radius: 12px;
+    background: transparent;
     overflow: hidden;
-}
-
-.banner-layout-two .item:before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-image: var(--slide-bg-image);
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    transform: scale(1.15);
-    filter: blur(3px) brightness(0.9);
-    opacity: 0.9;
-    z-index: 0;
-}
-
-.banner-layout-two .item:after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.3);
-    border-radius: 12px;
-    z-index: 2;
-}
-
-.banner-layout-two .active .item:after {
-    display: none;
 }
 
 .banner-layout-two .item img {
@@ -212,6 +232,11 @@ Tags: blog,one-column,two-columns,right-sidebar,left-sidebar,footer-widgets,cust
     text-align: left;
     padding: 64px 15%;
     border-radius: 0 0 12px 12px;
+    opacity: 1;
+    visibility: visible;
+    -webkit-transition: opacity 0.6s ease, visibility 0.6s ease, transform 0.6s ease;
+    -moz-transition: opacity 0.6s ease, visibility 0.6s ease, transform 0.6s ease;
+    transition: opacity 0.6s ease, visibility 0.6s ease, transform 0.6s ease;
     /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+0,000000+100&0+0,0.5+100 */
     background: -moz-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 100%);
     /* FF3.6-15 */
@@ -221,6 +246,22 @@ Tags: blog,one-column,two-columns,right-sidebar,left-sidebar,footer-widgets,cust
     /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#80000000', GradientType=0);
     /* IE6-9 */
+}
+
+.banner-layout-two .text-holder.is-visible {
+    opacity: 1;
+    visibility: visible;
+    -moz-transform: translateX(-50%) translateY(0);
+    transform: translateX(-50%) translateY(0);
+    pointer-events: auto;
+}
+
+.banner-layout-two .text-holder:not(.is-visible) {
+    opacity: 0;
+    visibility: hidden;
+    -moz-transform: translateX(-50%) translateY(16px);
+    transform: translateX(-50%) translateY(16px);
+    pointer-events: none;
 }
 
 .banner-layout-two .text-holder .category {
@@ -253,8 +294,8 @@ Tags: blog,one-column,two-columns,right-sidebar,left-sidebar,footer-widgets,cust
 }
 
 .banner-layout-two .text-holder .entry-title {
-    font-size: 3.111em;
-    line-height: 1.429em;
+    font-size: 2.111em;
+    line-height: 1.2em;
     font-weight: 100;
     margin: 0;
     font-family: 'Mulish' !important;
@@ -282,24 +323,37 @@ Tags: blog,one-column,two-columns,right-sidebar,left-sidebar,footer-widgets,cust
     left: 18px;
     width: 40px;
     height: 40px;
-    background: rgba(255, 255, 255, 0.4) !important;
-    border-radius: 4px;
+    background: rgba(0, 0, 0, 0.19) !important;
+    border: 1px solid rgba(250, 238, 233, 0.45);
+    border-radius: 50%;
+    -webkit-backdrop-filter: blur(3px);
+    backdrop-filter: blur(3px);
     -webkit-transition: ease 0.2s;
     -moz-transition: ease 0.2s;
     transition: ease 0.2s;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
     -webkit-transform: translateY(-50%);
     -moz-transform: translateY(-50%);
     transform: translateY(-50%);
 }
 
 .banner-layout-two .owl-prev:hover {
-    background: #fff !important;
+    background: rgba(0, 0, 0, 0.28) !important;
+    border-color: rgba(250, 238, 233, 0.6);
 }
 
 .banner-layout-two .owl-prev svg {
     width: 18px;
     height: 12px;
-    fill: #000;
+    fill: #faeee9;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -314,24 +368,37 @@ Tags: blog,one-column,two-columns,right-sidebar,left-sidebar,footer-widgets,cust
     right: 18px;
     width: 40px;
     height: 40px;
-    background: rgba(255, 255, 255, 0.5) !important;
-    border-radius: 4px;
+    background: rgba(0, 0, 0, 0.19) !important;
+    border: 1px solid rgba(250, 238, 233, 0.45);
+    border-radius: 50%;
+    -webkit-backdrop-filter: blur(3px);
+    backdrop-filter: blur(3px);
     -webkit-transition: ease 0.2s;
     -moz-transition: ease 0.2s;
     transition: ease 0.2s;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
     -webkit-transform: translateY(-50%);
     -moz-transform: translateY(-50%);
     transform: translateY(-50%);
 }
 
 .banner-layout-two .owl-next:hover {
-    background: #fff !important;
+    background: rgba(0, 0, 0, 0.28) !important;
+    border-color: rgba(250, 238, 233, 0.6);
 }
 
 .banner-layout-two .owl-next svg {
     width: 18px;
     height: 12px;
-    fill: #000;
+    fill: #faeee9;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -500,3 +567,22 @@ Tags: blog,one-column,two-columns,right-sidebar,left-sidebar,footer-widgets,cust
         padding: 64px 5% 30px;
     }
  }
+
+ @media only screen and (max-width: 767px){
+    .banner-layout-two .owl-item,
+    .banner-layout-two .item {
+        width: 100% !important;
+    }
+ }
+
+ @media only screen and (min-width: 1025px){
+    .banner-layout-two {
+        --banner-offset: 159px;
+    }
+ }
+
+@media only screen and (min-width: 1025px) {
+    body:not(.full-width) #primary {
+        width: 100%;
+    }
+}
