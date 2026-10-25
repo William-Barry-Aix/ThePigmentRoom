@@ -12,7 +12,7 @@ function blossom_pinit_theme_setup(){
      */
     load_child_theme_textdomain( 'blossom-pinit', get_stylesheet_directory() . '/languages' );
 
-    add_image_size( 'blossom-pinit-slider', 1303, 650, true );
+    add_image_size( 'blossom-pinit-slider', 900, 1600, true );
 
     // Add support for padding control
     add_theme_support( 'custom-spacing' );
@@ -122,9 +122,8 @@ function blossom_pinit_mobile_menu() {
                     </div>
                 </nav>
 
-                <?php if ( blossom_pin_social_links( false, false ) ) {
+                <?php if ( blossom_pinit_render_social_links() ) {
                     echo '<span class="separator"></span>';
-                    blossom_pin_social_links( true, false );
                 } ?>
             </div>
             <div class="mobile-branding-toggle">
@@ -145,9 +144,7 @@ function blossom_pinit_mobile_menu() {
                         <?php endif; ?>
                     </div>
                     <div class="mobile-header-actions__right">
-                        <?php if ( blossom_pin_social_links( false, false ) ) {
-                            blossom_pin_social_links( true, false );
-                        } ?>
+                        <?php blossom_pinit_render_social_links(); ?>
                     </div>
                 </div>
             </div>
@@ -546,11 +543,51 @@ function blossom_pinit_get_fixed_slider_images() {
     return $images;
 }
 
+function blossom_pinit_render_social_links() {
+    $social_links = array(
+        array(
+            'image' => 'facebook-svgrepo-com.svg',
+            'link'  => 'https://www.facebook.com/',
+            'label' => 'Facebook',
+        ),
+        array(
+            'image' => 'instagram-logo-facebook-2-svgrepo-com.svg',
+            'link'  => 'https://www.instagram.com/the_pigment_room/',
+            'label' => 'Instagram',
+        ),
+        array(
+            'image' => 'tiktok-logo-thin-svgrepo-com (2).svg',
+            'link'  => 'https://www.tiktok.com/',
+            'label' => 'TikTok',
+        ),
+    );
+
+    echo '<div class="social-networks social-image-links"><ul>';
+
+    foreach ( $social_links as $social_link ) {
+        $image_url = get_stylesheet_directory_uri() . '/images/socials/' . rawurlencode( $social_link['image'] );
+
+        echo '<li class="social-link social-link-' . esc_attr( strtolower( $social_link['label'] ) ) . '">';
+        echo '<a href="' . esc_url( $social_link['link'] ) . '" target="_blank" rel="nofollow noopener">';
+        echo '<img src="' . esc_url( $image_url ) . '" alt="' . esc_attr( $social_link['label'] ) . '" />';
+        echo '</a>';
+        echo '</li>';
+    }
+
+    echo '</ul></div>';
+
+    return true;
+}
+
 function blossom_pin_header(){ 
     $header_layout = get_theme_mod( 'header_layout_option', 'two' ); ?>
     <header id="masthead" class="site-header header-layout-<?php echo esc_attr( $header_layout ); ?>" itemscope itemtype="http://schema.org/WPHeader">
 
         <?php 
+            $booking_url = blossom_pinit_get_booking_url();
+            $booking_page = get_page_by_path( 'booking' );
+            $is_booking_page = $booking_page instanceof WP_Post ? is_page( $booking_page->ID ) : is_page( 'booking' );
+
             if( $header_layout == 'two' ){ ?>
                 <div class="header-t">
                     <div class="container">
@@ -562,7 +599,9 @@ function blossom_pin_header(){
                     <div class="container clearfix">
                         <div class="overlay"></div>
                         <?php 
-                        blossom_pin_primary_nagivation(); 
+                        if ( ! $is_booking_page ) : ?>
+                            <a class="desktop-booking-button" href="<?php echo esc_url( $booking_url ); ?>"><?php esc_html_e( 'Book Now', 'blossom-pinit' ); ?></a>
+                        <?php endif;
                         blossom_pin_tools();
                         ?>          
                     </div>
@@ -593,11 +632,8 @@ function blossom_pin_primary_nagivation(){ ?>
 
 function blossom_pin_tools(){ ?> 
     <div class="tools">
-        </div>
-        <?php 
-        if( blossom_pin_social_links( false, false ) ){
+        <?php if ( blossom_pinit_render_social_links() ) {
             echo '<span class="separator"></span>';
-            blossom_pin_social_links( true, false );
         } ?>
     </div>  
 <?php 
@@ -699,6 +735,28 @@ function blossom_pin_banner(){
         } 
     }    
 }
+
+function blossom_pinit_google_map_section() {
+    if ( ! ( is_front_page() || is_home() ) ) {
+        return;
+    }
+    ?>
+    <section class="front-page-map-section">
+        <div class="container">
+            <div class="front-page-map-wrap">
+                <iframe
+                    title="<?php esc_attr_e( 'The Pigment Room location map', 'blossom-pinit' ); ?>"
+                    src="<?php echo esc_url( 'https://www.google.com/maps?q=' . rawurlencode( '467 Rue de Port-Royal Ouest, Montréal, QC' ) . '&z=11&output=embed' ); ?>"
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
+                    allowfullscreen>
+                </iframe>
+            </div>
+        </div>
+    </section>
+    <?php
+}
+add_action( 'blossom_pin_after_header', 'blossom_pinit_google_map_section', 20 );
 /** Typography */
 function blossom_pin_fonts_url(){
     $fonts_url = '';
@@ -966,6 +1024,57 @@ function blossom_pin_dynamic_css(){
         font-family : ' . wp_kses_post( $secondary_fonts['font'] ) . ';
     }';
 
+    $custom_css .= '
+    .front-page-map-section {
+        padding: 24px 0 0;
+        width: 100%;
+        max-width: none;
+        margin: 0;
+        overflow: hidden;
+    }
+
+    .front-page-map-section .container {
+        display: block;
+        max-width: none !important;
+        width: 100% !important;
+        margin: 0 !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+
+    .front-page-map-wrap {
+        overflow: hidden;
+        border: 0;
+        border-radius: 0;
+        box-shadow: 0 14px 40px rgba(123, 57, 26, 0.12);
+        background: #fff;
+    }
+
+    .front-page-map-wrap iframe {
+        display: block;
+        width: 100%;
+        height: 420px;
+        border: 0;
+        -webkit-filter: none;
+        filter: none;
+    }
+
+    @media only screen and (max-width: 1024px) {
+        .front-page-map-section {
+            padding-top: 20px;
+            width: 100%;
+            max-width: none;
+        }
+
+        .front-page-map-section .container {
+            width: 100% !important;
+        }
+
+        .front-page-map-wrap iframe {
+            height: 280px;
+        }
+    }';
+
 
     if( blossom_pin_is_woocommerce_activated() ) {
         $custom_css .='
@@ -1075,10 +1184,77 @@ function blossom_pin_dynamic_css(){
         background: #faeee9 !important;
     }
 
+    .social-image-links ul li a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 28px;
+        height: 28px;
+    }
+
+    .social-image-links ul {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        width: fit-content;
+        margin: 0 auto;
+        padding: 0;
+        list-style: none;
+    }
+
+    .social-image-links ul li {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        line-height: 0;
+    }
+
+    .social-image-links ul li a img {
+        width: 28px;
+        height: 28px;
+        max-width: none;
+        max-height: none;
+        display: block;
+        object-fit: contain;
+    }
+
+    .social-image-links ul li.social-link-tiktok a,
+    .social-image-links ul li.social-link-tiktok a img {
+            width: 28px;
+            height: 28px;
+    }
+
+    .social-image-links ul li.social-link-facebook a,
+    .social-image-links ul li.social-link-facebook a img {
+        width: 30px;
+        height: 30px;
+    }
+
     .amelia-v2-booking #amelia-container.am-fs__wrapper,
     .amelia-v2-booking #amelia-container .am-fs__wrapper,
     .amelia-v2-booking .am-no-services {
         margin-top: 0 !important;
+    }
+
+    .page-booking #secondary {
+        display: none;
+    }
+
+    .page-booking #primary {
+        float: none;
+        width: 100%;
+        max-width: none;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .page-booking .site-content .container,
+    .page-booking .site-content .content-area {
+        max-width: none;
+        width: 100%;
     }
 
     @media only screen and (max-width: 1024px) {
@@ -1142,7 +1318,18 @@ function blossom_pin_dynamic_css(){
         }
 
         .mobile-header .mobile-site-header .mobile-header-actions__right {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: -8px;
+            transform: translateX(6px);
             justify-self: end;
+        }
+
+        .mobile-header .mobile-site-header .mobile-header-actions__right .social-networks,
+        .mobile-header .mobile-site-header .mobile-header-actions__right .social-image-links {
+            margin-left: auto;
+            width: fit-content;
         }
 
         .mobile-header .mobile-site-header .mobile-menu-toggle-wrap {
@@ -1194,7 +1381,7 @@ function blossom_pin_dynamic_css(){
             display: flex;
             align-items: center;
             justify-content: flex-end;
-            gap: 10px;
+            gap: 5px;
         }
 
         .mobile-header .mobile-site-header .mobile-header-actions__right .social-networks ul li {
@@ -1202,7 +1389,24 @@ function blossom_pin_dynamic_css(){
         }
 
         .mobile-header .mobile-site-header .mobile-header-actions__right .social-networks ul li a {
-            font-size: 16px;
+            font-size: 13px;
+        }
+
+        .social-image-links ul li.social-link-tiktok a,
+        .social-image-links ul li.social-link-tiktok a img {
+            width: 24px;
+            height: 24px;
+        }
+
+        .social-image-links ul li.social-link-instagram a img {
+            width: 24px;
+            height: 24px;
+        }
+
+        .social-image-links ul li.social-link-facebook a,
+        .social-image-links ul li.social-link-facebook a img {
+            width: 26px;
+            height: 26px;
         }
     }';
            
@@ -1212,18 +1416,6 @@ function blossom_pin_dynamic_css(){
 function blossom_pin_footer_bottom(){ ?>
     <div class="footer-b">
         <div class="container">
-            <div class="site-info">            
-            <?php
-                blossom_pin_get_footer_copyright();
-                esc_html_e( ' Blossom PinIt | Developed By ', 'blossom-pinit' );
-                echo '<a href="' . esc_url( 'https://blossomthemes.com/' ) .'" rel="nofollow" target="_blank">'. esc_html__( 'Blossom Themes', 'blossom-pinit' ) . '</a>.';
-                
-                printf( esc_html__( ' Powered by %s', 'blossom-pinit' ), '<a href="'. esc_url( __( 'https://wordpress.org/', 'blossom-pinit' ) ) .'" target="_blank">WordPress</a> . ' );
-                if ( function_exists( 'the_privacy_policy_link' ) ) {
-                    the_privacy_policy_link();
-                }
-            ?>               
-            </div>
             <?php blossom_pin_secondary_navigation(); ?>
         </div>
     </div>
