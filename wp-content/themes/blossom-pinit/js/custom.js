@@ -15,7 +15,7 @@ jQuery(document).ready(function($){
         $textHolder.removeClass('is-visible');
 
         if ( shouldReveal ) {
-            $bannerSlider.find('.owl-item.center .text-holder').addClass('is-visible');
+            $bannerSlider.find('.owl-item.center .text-holder, .owl-item.active .text-holder').addClass('is-visible');
         }
     }
 
@@ -47,18 +47,22 @@ jQuery(document).ready(function($){
                 stagePadding: 0,
                 margin: 0,
                 items: 1,
-                autoWidth: false
+                autoWidth: false,
+                center: false
             },
             420: {
                 stagePadding: 0,
                 margin: 0,
                 items: 1,
-                autoWidth: false
+                autoWidth: false,
+                center: false
             },  
             768: {
                 stagePadding: 0,
                 margin: 0,
-                items: 2
+                items: 1,
+                autoWidth: false,
+                center: false
             },
             1025: {
                 stagePadding: 0,

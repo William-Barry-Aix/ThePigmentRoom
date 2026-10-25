@@ -568,7 +568,7 @@ Tags: blog,one-column,two-columns,right-sidebar,left-sidebar,footer-widgets,cust
     }
  }
 
- @media only screen and (max-width: 767px){
+ @media only screen and (max-width: 1024px){
     .banner-layout-two .owl-item,
     .banner-layout-two .item {
         width: 100% !important;
