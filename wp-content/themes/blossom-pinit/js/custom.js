@@ -84,17 +84,30 @@ jQuery(document).ready(function($){
     });
 
     if ($bannerSlider.length && sliderItemCount > 1) {
-        var existingTimer = $bannerSlider.data('pinitAutoTimer');
+        var autoTimer = null;
+        var isAutoMoving = false;
 
-        if (existingTimer) {
-            window.clearInterval(existingTimer);
-        }
+        var blossomPinitScheduleNextSlide = function() {
+            window.clearTimeout(autoTimer);
 
-        var autoTimer = window.setInterval(function(){
-            $bannerSlider.trigger(sliderAutoDirection, [600]);
-        }, sliderIntervalMs);
+            autoTimer = window.setTimeout(function(){
+                isAutoMoving = true;
+                $bannerSlider.trigger(sliderAutoDirection, [600]);
+                isAutoMoving = false;
+                blossomPinitScheduleNextSlide();
+            }, sliderIntervalMs);
+        };
 
-        $bannerSlider.data('pinitAutoTimer', autoTimer);
+        blossomPinitScheduleNextSlide();
+
+        // Any pointer/touch interaction, drag end, or non-auto slide change restarts the countdown.
+        $bannerSlider.on('mousedown touchstart click', blossomPinitScheduleNextSlide);
+        $bannerSlider.on('dragged.owl.carousel', blossomPinitScheduleNextSlide);
+        $bannerSlider.on('changed.owl.carousel', function(e) {
+            if ( !isAutoMoving && e.property && e.property.name === 'position' ) {
+                blossomPinitScheduleNextSlide();
+            }
+        });
     }
 
     $bannerSlider.find('img').on('load', function(){

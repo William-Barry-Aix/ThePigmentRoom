@@ -40,7 +40,7 @@ function blossom_pinit_styles() {
 
     wp_enqueue_style( 'blossom-pinit-parent-style', get_template_directory_uri() . '/style.css', $dependencies );
 
-	wp_enqueue_script( 'blossom-pinit', get_stylesheet_directory_uri() . '/js/custom.js', array('jquery', 'owl-carousel' ), $version, true );
+	wp_enqueue_script( 'blossom-pinit', get_stylesheet_directory_uri() . '/js/custom.js', array('jquery', 'owl-carousel' ), filemtime( get_stylesheet_directory() . '/js/custom.js' ), true );
     
     $array = array( 
         'rtl'       => is_rtl(),
