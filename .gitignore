@@ -6,6 +6,8 @@
 
 # Keep only the blossom-pin and blossom-pinit theme trees.
 !/wp-content/
+!/wp-content/mu-plugins/
+!/wp-content/mu-plugins/**
 !/wp-content/themes/
 !/wp-content/themes/blossom-pin/
 !/wp-content/themes/blossom-pin/**
