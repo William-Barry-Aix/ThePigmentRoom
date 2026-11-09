@@ -325,6 +325,37 @@ Tags: blog,one-column,two-columns,right-sidebar,left-sidebar,footer-widgets,cust
     margin-top: 24px;
 }
 
+#colophon > .footer-t {
+    padding: 20px 0;
+    border-bottom: none;
+}
+
+#colophon > .footer-b > .container > nav {
+    float: left;
+    width: 100%;
+    justify-content: flex-start;
+    text-align: left;
+}
+
+#colophon > .footer-b > .container {
+    padding: 15px 51px;
+}
+
+#colophon > .footer-b > .container > nav ul {
+    text-align: left;
+    font-size: 0.85em;
+}
+
+#colophon > .footer-b > .container > nav a {
+    color: #fff6ea;
+}
+
+@media only screen and (max-width: 767px) {
+    #colophon > .footer-b > .container {
+        max-width: none;
+    }
+}
+
 .banner-layout-two .text-holder .entry-title a {
     color: #fff;
     -webkit-transition: ease 0.2s;
