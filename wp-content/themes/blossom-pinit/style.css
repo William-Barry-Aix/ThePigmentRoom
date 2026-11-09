@@ -74,6 +74,21 @@ Tags: blog,one-column,two-columns,right-sidebar,left-sidebar,footer-widgets,cust
     max-width: none;
 }
 
+#media_image-3 {
+    width: 416px !important;
+    max-width: none !important;
+}
+
+#media_image-3 > img {
+    display: block;
+    width: 416px !important;
+    min-width: 416px !important;
+    max-width: 416px !important;
+    height: 106px !important;
+    min-height: 106px !important;
+    max-height: 106px !important;
+}
+
 @media only screen and (max-width: 1024px) {
     .mobile-header .mobile-site-header .site-branding {
         display: flex;
