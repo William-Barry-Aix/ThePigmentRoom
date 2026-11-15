@@ -2,6 +2,7 @@ jQuery(document).ready(function($){
     
     var rtl;
     var sliderIntervalMs = 4000;
+    var sliderTransitionMs = 350;
     
     rtl = (typeof blossom_pinit_data !== 'undefined' && blossom_pinit_data.rtl == '1') || $('html').attr('dir') === 'rtl';
 
@@ -31,7 +32,7 @@ jQuery(document).ready(function($){
     .owlCarousel({
         loop: true,
         autoplay: false,
-        smartSpeed: 600,
+        smartSpeed: sliderTransitionMs,
         margin: 0,
         nav: true,
         dots: false,
@@ -92,7 +93,7 @@ jQuery(document).ready(function($){
 
             autoTimer = window.setTimeout(function(){
                 isAutoMoving = true;
-                $bannerSlider.trigger(sliderAutoDirection, [600]);
+                $bannerSlider.trigger(sliderAutoDirection, [sliderTransitionMs]);
                 isAutoMoving = false;
                 blossomPinitScheduleNextSlide();
             }, sliderIntervalMs);
