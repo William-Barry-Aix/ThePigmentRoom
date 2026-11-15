@@ -136,7 +136,6 @@ jQuery(document).ready(function($){
     var mobileHeaderIsVisible = false;
     var stickyVisibilityDirection = 0;
     var stickyVisibilityTravel = 0;
-    var stickyInitRafId = null;
     var lastViewportWidth = window.innerWidth || document.documentElement.clientWidth;
     var resizeDebounceTimer = null;
     var resizeWidthThreshold = 2;
@@ -189,16 +188,8 @@ jQuery(document).ready(function($){
     }
 
     function blossomPinitResetMobileHeader() {
-        if ( stickyInitRafId !== null ) {
-            window.cancelAnimationFrame(stickyInitRafId);
-            stickyInitRafId = null;
-        }
-
         $body.css('padding-top', '');
-        $mobileHeaderActions.removeClass('is-sticky is-visible').css({
-            top: '',
-            visibility: ''
-        });
+        $mobileHeaderActions.removeClass('is-sticky is-visible').css('top', '');
         mobileHeaderIsSticky = false;
         mobileHeaderIsVisible = false;
         stickyVisibilityDirection = 0;
@@ -244,19 +235,6 @@ jQuery(document).ready(function($){
             mobileHeaderIsVisible = false;
             stickyVisibilityDirection = 0;
             stickyVisibilityTravel = 0;
-
-            // Hide for one frame at initial sticky attach to prevent visual flash.
-            $mobileHeaderActions.css('visibility', 'hidden');
-            if ( stickyInitRafId !== null ) {
-                window.cancelAnimationFrame(stickyInitRafId);
-            }
-
-            stickyInitRafId = window.requestAnimationFrame(function() {
-                stickyInitRafId = null;
-                if ( mobileHeaderIsSticky ) {
-                    $mobileHeaderActions.css('visibility', '');
-                }
-            });
         } else if ( mobileHeaderIsSticky && currentScrollTop <= stickyStopThreshold ) {
             mobileHeaderIsSticky = false;
         }

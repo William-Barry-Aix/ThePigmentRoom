@@ -1307,7 +1307,7 @@ function blossom_pin_dynamic_css(){
             grid-template-columns: minmax(0, 0.75fr) minmax(0, 1.5fr) minmax(0, 0.75fr);
             align-items: center;
             gap: 12px;
-            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            transition: transform 0.25s ease, opacity 0.2s ease, box-shadow 0.25s ease;
         }
 
         .mobile-header .mobile-site-header .mobile-header-actions.is-sticky {
@@ -1323,11 +1323,17 @@ function blossom_pin_dynamic_css(){
             background: #faeee9;
             box-shadow: none;
             transform: translateY(calc(-100% - 12px));
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
             z-index: 9999;
         }
 
         .mobile-header .mobile-site-header .mobile-header-actions.is-sticky.is-visible {
             transform: translateY(0);
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
             box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
         }
 
