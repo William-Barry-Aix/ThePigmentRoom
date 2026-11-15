@@ -128,6 +128,9 @@ jQuery(document).ready(function($){
     var mobileHeaderActionsHeight = 0;
     var stickyThreshold = 0;
     var stickyTicking = false;
+    var lastViewportWidth = window.innerWidth || document.documentElement.clientWidth;
+    var resizeDebounceTimer = null;
+    var resizeWidthThreshold = 2;
 
     function blossomPinitSetBannerOffset() {
         var headerHeight = 0;
@@ -145,14 +148,26 @@ jQuery(document).ready(function($){
         }
     }
 
-    blossomPinitSetBannerOffset();
-    $window.on('resize orientationchange', blossomPinitSetBannerOffset);
+    function blossomPinitHandleLayoutResize(forceUpdate) {
+        var currentViewportWidth = window.innerWidth || document.documentElement.clientWidth;
+        var widthChanged = Math.abs(currentViewportWidth - lastViewportWidth) > resizeWidthThreshold;
 
-    $window.on('resize orientationchange', function() {
+        if ( !forceUpdate && !widthChanged ) {
+            return;
+        }
+
+        lastViewportWidth = currentViewportWidth;
+        blossomPinitSetBannerOffset();
+
         window.requestAnimationFrame(function() {
             $bannerSlider.trigger('refresh.owl.carousel');
         });
-    });
+
+        blossomPinitMeasureMobileHeader();
+        blossomPinitUpdateMobileHeader();
+    }
+
+    blossomPinitSetBannerOffset();
 
     function blossomPinitGetAdminBarHeight() {
         var $adminBar = $('#wpadminbar');
@@ -223,9 +238,19 @@ jQuery(document).ready(function($){
     blossomPinitUpdateMobileHeader();
 
     $window.on('scroll', blossomPinitRequestMobileHeaderUpdate);
-    $window.on('load resize', function() {
-        blossomPinitMeasureMobileHeader();
-        blossomPinitUpdateMobileHeader();
+    $window.on('load', function() {
+        blossomPinitHandleLayoutResize(true);
+    });
+    $window.on('resize', function() {
+        window.clearTimeout(resizeDebounceTimer);
+        resizeDebounceTimer = window.setTimeout(function() {
+            blossomPinitHandleLayoutResize(false);
+        }, 120);
+    });
+    $window.on('orientationchange', function() {
+        window.setTimeout(function() {
+            blossomPinitHandleLayoutResize(true);
+        }, 120);
     });
 
 });
