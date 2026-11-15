@@ -268,7 +268,9 @@ jQuery(document).ready(function($){
             $mobileHeaderActions.toggleClass('is-visible', mobileHeaderIsVisible);
 
             var stickyCurrentHeight = $mobileHeaderActions.outerHeight() || mobileHeaderActionsHeight;
-            $body.css('padding-top', (mobileHeaderIsVisible ? stickyCurrentHeight : 0) + 'px');
+            var stickyProgress = currentScrollTop - stickyThreshold;
+            var stickyPadding = Math.max(0, Math.min(stickyCurrentHeight, stickyProgress));
+            $body.css('padding-top', stickyPadding + 'px');
         } else {
             blossomPinitResetMobileHeader();
         }
