@@ -242,7 +242,6 @@ jQuery(document).ready(function($){
         $mobileHeaderActions.css('top', blossomPinitGetAdminBarHeight() + 'px');
 
         if ( mobileHeaderIsSticky ) {
-            $body.css('padding-top', mobileHeaderActionsHeight + 'px');
             $mobileHeaderActions.addClass('is-sticky');
 
             if ( Math.abs(scrollDelta) > stickyDirectionDeadZone ) {
@@ -267,6 +266,9 @@ jQuery(document).ready(function($){
             }
 
             $mobileHeaderActions.toggleClass('is-visible', mobileHeaderIsVisible);
+
+            var stickyCurrentHeight = $mobileHeaderActions.outerHeight() || mobileHeaderActionsHeight;
+            $body.css('padding-top', (mobileHeaderIsVisible ? stickyCurrentHeight : 0) + 'px');
         } else {
             blossomPinitResetMobileHeader();
         }
