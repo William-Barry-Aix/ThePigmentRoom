@@ -1307,6 +1307,9 @@ function blossom_pin_dynamic_css(){
             grid-template-columns: minmax(0, 0.75fr) minmax(0, 1.5fr) minmax(0, 0.75fr);
             align-items: center;
             gap: 12px;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            will-change: transform, opacity;
             transition: transform 0.25s ease, opacity 0.2s ease, box-shadow 0.25s ease;
         }
 
@@ -1322,18 +1325,20 @@ function blossom_pin_dynamic_css(){
             overflow-x: clip;
             background: #faeee9;
             box-shadow: none;
-            transform: translateY(calc(-100% - 12px));
-            opacity: 0;
-            visibility: hidden;
-            pointer-events: none;
+            -webkit-transform: translate3d(0, calc(-100% - 12px), 0) !important;
+            transform: translate3d(0, calc(-100% - 12px), 0) !important;
+            opacity: 0 !important;
+            visibility: hidden !important;
+            pointer-events: none !important;
             z-index: 9999;
         }
 
         .mobile-header .mobile-site-header .mobile-header-actions.is-sticky.is-visible {
-            transform: translateY(0);
-            opacity: 1;
-            visibility: visible;
-            pointer-events: auto;
+            -webkit-transform: translate3d(0, 0, 0) !important;
+            transform: translate3d(0, 0, 0) !important;
+            opacity: 1 !important;
+            visibility: visible !important;
+            pointer-events: auto !important;
             box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
         }
 
