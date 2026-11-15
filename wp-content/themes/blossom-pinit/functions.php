@@ -1257,7 +1257,26 @@ function blossom_pin_dynamic_css(){
         width: 100%;
     }
 
+    .footer-t #media_image-3 {
+        width: 100% !important;
+        max-width: 416px !important;
+    }
+
+    .footer-t #media_image-3 > img {
+        display: block;
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+        height: auto !important;
+        min-height: 0 !important;
+        max-height: none !important;
+    }
+
     @media only screen and (max-width: 1024px) {
+        .footer-t #media_image-3 {
+            max-width: 100% !important;
+        }
+
         .mobile-header {
             position: relative;
             z-index: 9999;
