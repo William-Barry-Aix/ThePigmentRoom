@@ -127,15 +127,15 @@ jQuery(document).ready(function($){
     var lastScrollTop = $window.scrollTop();
     var mobileHeaderActionsHeight = 0;
     var stickyThreshold = 0;
-    var stickyThresholdBuffer = 32;
+    var stickyThresholdBuffer = 8;
     var stickyResetThreshold = 8;
     var stickyVisibilityDelta = 24;
-    var stickyVisibilityMinInterval = 140;
+    var stickyDirectionDeadZone = 2;
     var stickyTicking = false;
     var mobileHeaderIsSticky = false;
     var mobileHeaderIsVisible = false;
-    var stickyVisibilityAnchorScrollTop = lastScrollTop;
-    var stickyVisibilityLastToggleTime = 0;
+    var stickyVisibilityDirection = 0;
+    var stickyVisibilityTravel = 0;
     var lastViewportWidth = window.innerWidth || document.documentElement.clientWidth;
     var resizeDebounceTimer = null;
     var resizeWidthThreshold = 2;
@@ -192,8 +192,8 @@ jQuery(document).ready(function($){
         $mobileHeaderActions.removeClass('is-sticky is-visible').css('top', '');
         mobileHeaderIsSticky = false;
         mobileHeaderIsVisible = false;
-        stickyVisibilityAnchorScrollTop = 0;
-        stickyVisibilityLastToggleTime = 0;
+        stickyVisibilityDirection = 0;
+        stickyVisibilityTravel = 0;
     }
 
     function blossomPinitMeasureMobileHeader() {
@@ -216,16 +216,15 @@ jQuery(document).ready(function($){
         }
 
         var currentScrollTop = $window.scrollTop();
-        var now = Date.now();
+        var scrollDelta = currentScrollTop - lastScrollTop;
         var stickyStartThreshold = Math.max(0, stickyThreshold + stickyThresholdBuffer);
-        var stickyEndThreshold = Math.max(0, stickyThreshold - stickyThresholdBuffer);
 
         // Add a small hysteresis window around the trigger point to prevent rapid toggling.
         if ( !mobileHeaderIsSticky && currentScrollTop >= stickyStartThreshold ) {
             mobileHeaderIsSticky = true;
             mobileHeaderIsVisible = false;
-            stickyVisibilityAnchorScrollTop = currentScrollTop;
-            stickyVisibilityLastToggleTime = now;
+            stickyVisibilityDirection = 0;
+            stickyVisibilityTravel = 0;
         } else if ( mobileHeaderIsSticky && currentScrollTop <= stickyResetThreshold ) {
             mobileHeaderIsSticky = false;
         }
@@ -236,18 +235,24 @@ jQuery(document).ready(function($){
             $body.css('padding-top', mobileHeaderActionsHeight + 'px');
             $mobileHeaderActions.addClass('is-sticky');
 
-            var scrollSinceAnchor = currentScrollTop - stickyVisibilityAnchorScrollTop;
-            var canToggleVisibility = (now - stickyVisibilityLastToggleTime) >= stickyVisibilityMinInterval;
+            if ( Math.abs(scrollDelta) > stickyDirectionDeadZone ) {
+                var currentDirection = scrollDelta > 0 ? 1 : -1;
 
-            if ( canToggleVisibility ) {
-                if ( !mobileHeaderIsVisible && scrollSinceAnchor <= -stickyVisibilityDelta ) {
-                    mobileHeaderIsVisible = true;
-                    stickyVisibilityAnchorScrollTop = currentScrollTop;
-                    stickyVisibilityLastToggleTime = now;
-                } else if ( mobileHeaderIsVisible && scrollSinceAnchor >= stickyVisibilityDelta ) {
-                    mobileHeaderIsVisible = false;
-                    stickyVisibilityAnchorScrollTop = currentScrollTop;
-                    stickyVisibilityLastToggleTime = now;
+                if ( currentDirection !== stickyVisibilityDirection ) {
+                    stickyVisibilityDirection = currentDirection;
+                    stickyVisibilityTravel = Math.abs(scrollDelta);
+                } else {
+                    stickyVisibilityTravel += Math.abs(scrollDelta);
+                }
+
+                if ( stickyVisibilityTravel >= stickyVisibilityDelta ) {
+                    if ( stickyVisibilityDirection === -1 && !mobileHeaderIsVisible ) {
+                        mobileHeaderIsVisible = true;
+                        stickyVisibilityTravel = 0;
+                    } else if ( stickyVisibilityDirection === 1 && mobileHeaderIsVisible ) {
+                        mobileHeaderIsVisible = false;
+                        stickyVisibilityTravel = 0;
+                    }
                 }
             }
 
