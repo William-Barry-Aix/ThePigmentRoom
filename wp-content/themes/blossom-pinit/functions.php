@@ -1297,7 +1297,10 @@ function blossom_pin_dynamic_css(){
             left: 0;
             right: 0;
             width: 100%;
+            max-width: 100vw;
             padding: 12px 9px;
+            box-sizing: border-box;
+            overflow-x: clip;
             background: #faeee9;
             box-shadow: none;
             transform: translateY(calc(-100% - 12px));
