@@ -127,7 +127,9 @@ jQuery(document).ready(function($){
     var lastScrollTop = $window.scrollTop();
     var mobileHeaderActionsHeight = 0;
     var stickyThreshold = 0;
+    var stickyThresholdBuffer = 16;
     var stickyTicking = false;
+    var mobileHeaderIsSticky = false;
     var lastViewportWidth = window.innerWidth || document.documentElement.clientWidth;
     var resizeDebounceTimer = null;
     var resizeWidthThreshold = 2;
@@ -182,6 +184,7 @@ jQuery(document).ready(function($){
     function blossomPinitResetMobileHeader() {
         $body.css('padding-top', '');
         $mobileHeaderActions.removeClass('is-sticky is-visible').css('top', '');
+        mobileHeaderIsSticky = false;
     }
 
     function blossomPinitMeasureMobileHeader() {
@@ -204,12 +207,20 @@ jQuery(document).ready(function($){
         }
 
         var currentScrollTop = $window.scrollTop();
-        var isPastHeader = currentScrollTop > stickyThreshold;
+        var stickyStartThreshold = Math.max(0, stickyThreshold + stickyThresholdBuffer);
+        var stickyEndThreshold = Math.max(0, stickyThreshold - stickyThresholdBuffer);
         var isScrollingUp = currentScrollTop < lastScrollTop;
+
+        // Add a small hysteresis window around the trigger point to prevent rapid toggling.
+        if ( !mobileHeaderIsSticky && currentScrollTop >= stickyStartThreshold ) {
+            mobileHeaderIsSticky = true;
+        } else if ( mobileHeaderIsSticky && currentScrollTop <= stickyEndThreshold ) {
+            mobileHeaderIsSticky = false;
+        }
 
         $mobileHeaderActions.css('top', blossomPinitGetAdminBarHeight() + 'px');
 
-        if ( isPastHeader ) {
+        if ( mobileHeaderIsSticky ) {
             $body.css('padding-top', mobileHeaderActionsHeight + 'px');
             $mobileHeaderActions.addClass('is-sticky');
 
