@@ -1333,6 +1333,13 @@ function blossom_pin_dynamic_css(){
             z-index: 9999;
         }
 
+        .mobile-header .mobile-site-header .mobile-header-actions.is-sticky:not(.is-visible) #toggle-button,
+        .mobile-header .mobile-site-header .mobile-header-actions.is-sticky:not(.is-visible) #toggle-button span {
+            opacity: 0 !important;
+            visibility: hidden !important;
+            pointer-events: none !important;
+        }
+
         .mobile-header .mobile-site-header .mobile-header-actions.is-sticky.is-visible {
             -webkit-transform: translate3d(0, 0, 0) !important;
             transform: translate3d(0, 0, 0) !important;
@@ -1340,6 +1347,13 @@ function blossom_pin_dynamic_css(){
             visibility: visible !important;
             pointer-events: auto !important;
             box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .mobile-header .mobile-site-header .mobile-header-actions.is-sticky.is-visible #toggle-button,
+        .mobile-header .mobile-site-header .mobile-header-actions.is-sticky.is-visible #toggle-button span {
+            opacity: 1 !important;
+            visibility: visible !important;
+            pointer-events: auto !important;
         }
 
         .mobile-header .mobile-site-header .mobile-header-actions__left {
