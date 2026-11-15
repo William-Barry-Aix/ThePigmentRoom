@@ -128,10 +128,14 @@ jQuery(document).ready(function($){
     var mobileHeaderActionsHeight = 0;
     var stickyThreshold = 0;
     var stickyThresholdBuffer = 32;
-    var stickyVisibilityDelta = 8;
+    var stickyResetThreshold = 8;
+    var stickyVisibilityDelta = 24;
+    var stickyVisibilityMinInterval = 140;
     var stickyTicking = false;
     var mobileHeaderIsSticky = false;
     var mobileHeaderIsVisible = false;
+    var stickyVisibilityAnchorScrollTop = lastScrollTop;
+    var stickyVisibilityLastToggleTime = 0;
     var lastViewportWidth = window.innerWidth || document.documentElement.clientWidth;
     var resizeDebounceTimer = null;
     var resizeWidthThreshold = 2;
@@ -188,6 +192,8 @@ jQuery(document).ready(function($){
         $mobileHeaderActions.removeClass('is-sticky is-visible').css('top', '');
         mobileHeaderIsSticky = false;
         mobileHeaderIsVisible = false;
+        stickyVisibilityAnchorScrollTop = 0;
+        stickyVisibilityLastToggleTime = 0;
     }
 
     function blossomPinitMeasureMobileHeader() {
@@ -210,14 +216,17 @@ jQuery(document).ready(function($){
         }
 
         var currentScrollTop = $window.scrollTop();
-        var scrollDelta = currentScrollTop - lastScrollTop;
+        var now = Date.now();
         var stickyStartThreshold = Math.max(0, stickyThreshold + stickyThresholdBuffer);
         var stickyEndThreshold = Math.max(0, stickyThreshold - stickyThresholdBuffer);
 
         // Add a small hysteresis window around the trigger point to prevent rapid toggling.
         if ( !mobileHeaderIsSticky && currentScrollTop >= stickyStartThreshold ) {
             mobileHeaderIsSticky = true;
-        } else if ( mobileHeaderIsSticky && currentScrollTop <= stickyEndThreshold ) {
+            mobileHeaderIsVisible = false;
+            stickyVisibilityAnchorScrollTop = currentScrollTop;
+            stickyVisibilityLastToggleTime = now;
+        } else if ( mobileHeaderIsSticky && currentScrollTop <= stickyResetThreshold ) {
             mobileHeaderIsSticky = false;
         }
 
@@ -227,10 +236,19 @@ jQuery(document).ready(function($){
             $body.css('padding-top', mobileHeaderActionsHeight + 'px');
             $mobileHeaderActions.addClass('is-sticky');
 
-            if ( scrollDelta <= -stickyVisibilityDelta ) {
-                mobileHeaderIsVisible = true;
-            } else if ( scrollDelta >= stickyVisibilityDelta ) {
-                mobileHeaderIsVisible = false;
+            var scrollSinceAnchor = currentScrollTop - stickyVisibilityAnchorScrollTop;
+            var canToggleVisibility = (now - stickyVisibilityLastToggleTime) >= stickyVisibilityMinInterval;
+
+            if ( canToggleVisibility ) {
+                if ( !mobileHeaderIsVisible && scrollSinceAnchor <= -stickyVisibilityDelta ) {
+                    mobileHeaderIsVisible = true;
+                    stickyVisibilityAnchorScrollTop = currentScrollTop;
+                    stickyVisibilityLastToggleTime = now;
+                } else if ( mobileHeaderIsVisible && scrollSinceAnchor >= stickyVisibilityDelta ) {
+                    mobileHeaderIsVisible = false;
+                    stickyVisibilityAnchorScrollTop = currentScrollTop;
+                    stickyVisibilityLastToggleTime = now;
+                }
             }
 
             $mobileHeaderActions.toggleClass('is-visible', mobileHeaderIsVisible);
