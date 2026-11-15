@@ -127,9 +127,11 @@ jQuery(document).ready(function($){
     var lastScrollTop = $window.scrollTop();
     var mobileHeaderActionsHeight = 0;
     var stickyThreshold = 0;
-    var stickyThresholdBuffer = 16;
+    var stickyThresholdBuffer = 32;
+    var stickyVisibilityDelta = 8;
     var stickyTicking = false;
     var mobileHeaderIsSticky = false;
+    var mobileHeaderIsVisible = false;
     var lastViewportWidth = window.innerWidth || document.documentElement.clientWidth;
     var resizeDebounceTimer = null;
     var resizeWidthThreshold = 2;
@@ -185,6 +187,7 @@ jQuery(document).ready(function($){
         $body.css('padding-top', '');
         $mobileHeaderActions.removeClass('is-sticky is-visible').css('top', '');
         mobileHeaderIsSticky = false;
+        mobileHeaderIsVisible = false;
     }
 
     function blossomPinitMeasureMobileHeader() {
@@ -207,9 +210,9 @@ jQuery(document).ready(function($){
         }
 
         var currentScrollTop = $window.scrollTop();
+        var scrollDelta = currentScrollTop - lastScrollTop;
         var stickyStartThreshold = Math.max(0, stickyThreshold + stickyThresholdBuffer);
         var stickyEndThreshold = Math.max(0, stickyThreshold - stickyThresholdBuffer);
-        var isScrollingUp = currentScrollTop < lastScrollTop;
 
         // Add a small hysteresis window around the trigger point to prevent rapid toggling.
         if ( !mobileHeaderIsSticky && currentScrollTop >= stickyStartThreshold ) {
@@ -224,11 +227,13 @@ jQuery(document).ready(function($){
             $body.css('padding-top', mobileHeaderActionsHeight + 'px');
             $mobileHeaderActions.addClass('is-sticky');
 
-            if ( isScrollingUp ) {
-                $mobileHeaderActions.addClass('is-visible');
-            } else {
-                $mobileHeaderActions.removeClass('is-visible');
+            if ( scrollDelta <= -stickyVisibilityDelta ) {
+                mobileHeaderIsVisible = true;
+            } else if ( scrollDelta >= stickyVisibilityDelta ) {
+                mobileHeaderIsVisible = false;
             }
+
+            $mobileHeaderActions.toggleClass('is-visible', mobileHeaderIsVisible);
         } else {
             blossomPinitResetMobileHeader();
         }
