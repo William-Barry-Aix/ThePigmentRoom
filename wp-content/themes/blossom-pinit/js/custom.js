@@ -202,8 +202,17 @@ jQuery(document).ready(function($){
             return;
         }
 
+        var mobileSiteHeaderOffset = $mobileSiteHeader.length ? $mobileSiteHeader.offset() : null;
+        var mobileSiteHeaderTop = mobileSiteHeaderOffset ? mobileSiteHeaderOffset.top : 0;
+        var mobileSiteHeaderHeight = $mobileSiteHeader.length ? ($mobileSiteHeader.outerHeight(true) || 0) : 0;
+
         mobileHeaderActionsHeight = $mobileHeaderActions.outerHeight();
-        stickyThreshold = $mobileHeaderActions.offset().top + mobileHeaderActionsHeight;
+        if ( mobileSiteHeaderHeight > 0 ) {
+            stickyThreshold = mobileSiteHeaderTop + mobileSiteHeaderHeight;
+        } else {
+            stickyThreshold = ($mobileHeaderActions.offset().top || 0) + mobileHeaderActionsHeight;
+        }
+
         $mobileHeaderActions.css('top', blossomPinitGetAdminBarHeight() + 'px');
     }
 
