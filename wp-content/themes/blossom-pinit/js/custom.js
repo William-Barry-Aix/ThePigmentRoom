@@ -127,8 +127,8 @@ jQuery(document).ready(function($){
     var lastScrollTop = $window.scrollTop();
     var mobileHeaderActionsHeight = 0;
     var stickyThreshold = 0;
-    var stickyThresholdBuffer = 8;
-    var stickyResetThreshold = 8;
+    var stickyEnterBuffer = 16;
+    var stickyExitBuffer = 16;
     var stickyVisibilityDelta = 24;
     var stickyDirectionDeadZone = 2;
     var stickyTicking = false;
@@ -217,7 +217,8 @@ jQuery(document).ready(function($){
 
         var currentScrollTop = $window.scrollTop();
         var scrollDelta = currentScrollTop - lastScrollTop;
-        var stickyStartThreshold = Math.max(0, stickyThreshold + stickyThresholdBuffer);
+        var stickyStartThreshold = Math.max(0, stickyThreshold + stickyEnterBuffer);
+        var stickyStopThreshold = Math.max(0, stickyThreshold - stickyExitBuffer);
 
         // Add a small hysteresis window around the trigger point to prevent rapid toggling.
         if ( !mobileHeaderIsSticky && currentScrollTop >= stickyStartThreshold ) {
@@ -225,7 +226,7 @@ jQuery(document).ready(function($){
             mobileHeaderIsVisible = false;
             stickyVisibilityDirection = 0;
             stickyVisibilityTravel = 0;
-        } else if ( mobileHeaderIsSticky && currentScrollTop <= stickyResetThreshold ) {
+        } else if ( mobileHeaderIsSticky && currentScrollTop <= stickyStopThreshold ) {
             mobileHeaderIsSticky = false;
         }
 
