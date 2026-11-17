@@ -40,7 +40,11 @@ jQuery(document).ready(function($){
     }
 
     function blossomPinitGetActiveBannerImageIndex(orderedIds) {
-        var $activeImage = $bannerSlider.find('.owl-item.active:not(.cloned) img.banner-image[data-banner-image-id]').first();
+        var $activeImage = $bannerSlider.find('.owl-item.center:not(.cloned) img.banner-image[data-banner-image-id]').first();
+
+        if ( !$activeImage.length ) {
+            $activeImage = $bannerSlider.find('.owl-item.active:not(.cloned) img.banner-image[data-banner-image-id]').first();
+        }
 
         if ( !$activeImage.length ) {
             return 0;
