@@ -11,7 +11,6 @@ jQuery(document).ready(function($){
     var sliderItemCount = $bannerSlider.find('.item').length;
     var deferredBannerImageQueue = [];
     var deferredBannerIsLoading = false;
-    var deferredBannerRequestedMap = {};
 
     function blossomPinitCollectDeferredBannerImageIds() {
         var orderedIds = [];
@@ -68,12 +67,12 @@ jQuery(document).ready(function($){
             var rightId = orderedIds[rightIndex];
             var leftId = orderedIds[leftIndex];
 
-            if ( rightId && !queued[rightId] && !deferredBannerRequestedMap[rightId] ) {
+            if ( rightId && !queued[rightId] ) {
                 queued[rightId] = true;
                 queue.push(rightId);
             }
 
-            if ( leftId && !queued[leftId] && !deferredBannerRequestedMap[leftId] ) {
+            if ( leftId && !queued[leftId] ) {
                 queued[leftId] = true;
                 queue.push(leftId);
             }
@@ -90,19 +89,41 @@ jQuery(document).ready(function($){
         var srcset;
         var sizes;
         var preloader;
+        var didFinish = false;
+        var finishTimer = null;
+
+        function finishHydration() {
+            if ( didFinish ) {
+                return;
+            }
+
+            didFinish = true;
+            window.clearTimeout(finishTimer);
+            onDone();
+        }
 
         if ( !$targets.length || !$sourceImage.length ) {
-            onDone();
+            finishHydration();
             return;
         }
 
         src = $sourceImage.attr('data-src');
         srcset = $sourceImage.attr('data-srcset');
         sizes = $sourceImage.attr('data-sizes');
+
+        if ( !src ) {
+            finishHydration();
+            return;
+        }
+
         preloader = new Image();
 
         preloader.decoding = 'async';
         preloader.fetchPriority = 'low';
+
+        finishTimer = window.setTimeout(function() {
+            finishHydration();
+        }, 10000);
 
         preloader.onload = preloader.onerror = function() {
             $targets.each(function() {
@@ -125,7 +146,7 @@ jQuery(document).ready(function($){
                 }
             });
 
-            onDone();
+            finishHydration();
         };
 
         if ( srcset ) {
@@ -149,8 +170,7 @@ jQuery(document).ready(function($){
         while ( deferredBannerImageQueue.length ) {
             nextId = deferredBannerImageQueue.shift();
 
-            if ( nextId && !deferredBannerRequestedMap[nextId] ) {
-                deferredBannerRequestedMap[nextId] = true;
+            if ( nextId && $bannerSlider.find('img.banner-image[data-banner-image-id="' + nextId + '"][data-src]').length ) {
                 deferredBannerIsLoading = true;
 
                 blossomPinitHydrateBannerImageById(nextId, function() {
