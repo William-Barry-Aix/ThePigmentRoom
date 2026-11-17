@@ -672,9 +672,25 @@ function blossom_pin_banner(){
             if ( 'fixed' === $slider_image_source && ! empty( $fixed_slider_images ) ) { ?>
                 <div class="banner">
                     <div class="<?php echo esc_attr( $add_class ); ?>banner-layout-<?php echo esc_attr( $slider_layout ); ?> owl-carousel">
-                        <?php foreach ( $fixed_slider_images as $fixed_slider_image ) : ?>
+                        <?php
+                        $has_prioritized_banner_image = false;
+
+                        foreach ( $fixed_slider_images as $fixed_slider_image ) :
+                            $slider_image_attributes = array(
+                                'itemprop'  => 'image',
+                                'decoding'  => 'async',
+                                'loading'   => 'lazy',
+                                'fetchpriority' => 'low',
+                            );
+
+                            if ( ! $has_prioritized_banner_image ) {
+                                $slider_image_attributes['loading'] = 'eager';
+                                $slider_image_attributes['fetchpriority'] = 'high';
+                                $has_prioritized_banner_image = true;
+                            }
+                        ?>
                             <div class="item">
-                                <?php echo wp_get_attachment_image( $fixed_slider_image['image_id'], $image_size, false, array( 'itemprop' => 'image' ) ); ?>
+                                <?php echo wp_get_attachment_image( $fixed_slider_image['image_id'], $image_size, false, $slider_image_attributes ); ?>
                                 <?php if ( ! empty( $fixed_slider_image['title'] ) ) : ?>
                                     <div class="text-holder">
                                         <?php if ( ! empty( $fixed_slider_image['link'] ) ) : ?>
@@ -711,11 +727,25 @@ function blossom_pin_banner(){
             if( $qry->have_posts() ){ ?>
             <div class="banner">
                 <div class="<?php echo esc_attr( $add_class ); ?>banner-layout-<?php echo esc_attr( $slider_layout ); ?> owl-carousel">
+                    <?php $has_prioritized_banner_image = false; ?>
                     <?php while( $qry->have_posts() ){ $qry->the_post(); ?>
                     <div class="item">
                         <?php 
                         if( has_post_thumbnail() ){
-                            the_post_thumbnail( $image_size, array( 'itemprop' => 'image' ) );    
+                            $slider_image_attributes = array(
+                                'itemprop'  => 'image',
+                                'decoding'  => 'async',
+                                'loading'   => 'lazy',
+                                'fetchpriority' => 'low',
+                            );
+
+                            if ( ! $has_prioritized_banner_image ) {
+                                $slider_image_attributes['loading'] = 'eager';
+                                $slider_image_attributes['fetchpriority'] = 'high';
+                                $has_prioritized_banner_image = true;
+                            }
+
+                            the_post_thumbnail( $image_size, $slider_image_attributes );
                         }
                         ?>                        
                         <div class="text-holder">

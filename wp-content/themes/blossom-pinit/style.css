@@ -224,7 +224,7 @@ Tags: blog,one-column,two-columns,right-sidebar,left-sidebar,footer-widgets,cust
     width: calc((100vh - var(--banner-offset)) * 9 / 16);
     width: calc((100dvh - var(--banner-offset)) * 9 / 16);
     height: 100%;
-    background: transparent;
+    background: #efe6de;
     overflow: hidden;
 }
 
@@ -232,6 +232,14 @@ Tags: blog,one-column,two-columns,right-sidebar,left-sidebar,footer-widgets,cust
     position: relative;
     z-index: 1;
     display: block;
+    opacity: 0;
+    -webkit-transition: opacity 0.35s ease;
+    -moz-transition: opacity 0.35s ease;
+    transition: opacity 0.35s ease;
+}
+
+.banner-layout-two .item img.is-loaded {
+    opacity: 1;
 }
 
 .banner-layout-two .text-holder {

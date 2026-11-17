@@ -112,8 +112,10 @@ jQuery(document).ready(function($){
     }
 
     $bannerSlider.find('img').on('load', function(){
+        $(this).addClass('is-loaded');
+        $(this).closest('.item').addClass('has-loaded-image');
     }).each(function(){
-        if (this.complete) {
+        if ( this.complete && this.naturalWidth > 0 ) {
             $(this).trigger('load');
         }
     });
