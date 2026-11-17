@@ -639,6 +639,80 @@ function blossom_pin_tools(){ ?>
 <?php 
 }
 
+function blossom_pinit_get_slider_image_markup( $attachment_id, $image_size, $is_priority = false ) {
+    $attachment_id = absint( $attachment_id );
+
+    if ( ! $attachment_id ) {
+        return '';
+    }
+
+    if ( $is_priority ) {
+        return wp_get_attachment_image(
+            $attachment_id,
+            $image_size,
+            false,
+            array(
+                'itemprop' => 'image',
+                'class' => 'banner-image banner-image-priority',
+                'decoding' => 'async',
+                'loading' => 'eager',
+                'fetchpriority' => 'high',
+                'data-banner-image-id' => (string) $attachment_id,
+            )
+        );
+    }
+
+    $image = wp_get_attachment_image_src( $attachment_id, $image_size );
+
+    if ( empty( $image[0] ) ) {
+        return '';
+    }
+
+    $placeholder = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==';
+    $alt = get_post_meta( $attachment_id, '_wp_attachment_image_alt', true );
+    $srcset = wp_get_attachment_image_srcset( $attachment_id, $image_size );
+    $sizes = wp_get_attachment_image_sizes( $attachment_id, $image_size );
+
+    $attributes = array(
+        'class' => 'banner-image banner-image-deferred',
+        'itemprop' => 'image',
+        'src' => $placeholder,
+        'alt' => $alt,
+        'width' => isset( $image[1] ) ? (string) (int) $image[1] : '',
+        'height' => isset( $image[2] ) ? (string) (int) $image[2] : '',
+        'decoding' => 'async',
+        'loading' => 'lazy',
+        'fetchpriority' => 'low',
+        'data-banner-image-id' => (string) $attachment_id,
+        'data-src' => $image[0],
+    );
+
+    if ( ! empty( $srcset ) ) {
+        $attributes['data-srcset'] = $srcset;
+    }
+
+    if ( ! empty( $sizes ) ) {
+        $attributes['data-sizes'] = $sizes;
+    }
+
+    $html_attributes = '';
+
+    foreach ( $attributes as $attribute_name => $attribute_value ) {
+        if ( '' === $attribute_value ) {
+            continue;
+        }
+
+        if ( 'src' === $attribute_name || 'data-src' === $attribute_name ) {
+            $html_attributes .= ' ' . $attribute_name . '="' . esc_url( $attribute_value ) . '"';
+            continue;
+        }
+
+        $html_attributes .= ' ' . $attribute_name . '="' . esc_attr( $attribute_value ) . '"';
+    }
+
+    return '<img' . $html_attributes . ' />';
+}
+
 function blossom_pin_banner(){
     $ed_banner      = get_theme_mod( 'ed_banner_section', 'slider_banner' );
     $slider_type    = get_theme_mod( 'slider_type', 'latest_posts' ); 
@@ -676,21 +750,16 @@ function blossom_pin_banner(){
                         $has_prioritized_banner_image = false;
 
                         foreach ( $fixed_slider_images as $fixed_slider_image ) :
-                            $slider_image_attributes = array(
-                                'itemprop'  => 'image',
-                                'decoding'  => 'async',
-                                'loading'   => 'lazy',
-                                'fetchpriority' => 'low',
-                            );
-
-                            if ( ! $has_prioritized_banner_image ) {
-                                $slider_image_attributes['loading'] = 'eager';
-                                $slider_image_attributes['fetchpriority'] = 'high';
-                                $has_prioritized_banner_image = true;
-                            }
+                            $image_id = isset( $fixed_slider_image['image_id'] ) ? absint( $fixed_slider_image['image_id'] ) : 0;
                         ?>
                             <div class="item">
-                                <?php echo wp_get_attachment_image( $fixed_slider_image['image_id'], $image_size, false, $slider_image_attributes ); ?>
+                                <?php
+                                echo blossom_pinit_get_slider_image_markup( $image_id, $image_size, ! $has_prioritized_banner_image );
+
+                                if ( $image_id && ! $has_prioritized_banner_image ) {
+                                    $has_prioritized_banner_image = true;
+                                }
+                                ?>
                                 <?php if ( ! empty( $fixed_slider_image['title'] ) ) : ?>
                                     <div class="text-holder">
                                         <?php if ( ! empty( $fixed_slider_image['link'] ) ) : ?>
@@ -732,20 +801,13 @@ function blossom_pin_banner(){
                     <div class="item">
                         <?php 
                         if( has_post_thumbnail() ){
-                            $slider_image_attributes = array(
-                                'itemprop'  => 'image',
-                                'decoding'  => 'async',
-                                'loading'   => 'lazy',
-                                'fetchpriority' => 'low',
-                            );
+                            $image_id = get_post_thumbnail_id();
 
-                            if ( ! $has_prioritized_banner_image ) {
-                                $slider_image_attributes['loading'] = 'eager';
-                                $slider_image_attributes['fetchpriority'] = 'high';
+                            echo blossom_pinit_get_slider_image_markup( $image_id, $image_size, ! $has_prioritized_banner_image );
+
+                            if ( $image_id && ! $has_prioritized_banner_image ) {
                                 $has_prioritized_banner_image = true;
                             }
-
-                            the_post_thumbnail( $image_size, $slider_image_attributes );
                         }
                         ?>                        
                         <div class="text-holder">
@@ -765,6 +827,81 @@ function blossom_pin_banner(){
         } 
     }    
 }
+
+function blossom_pinit_get_first_slider_image_id() {
+    $ed_banner = get_theme_mod( 'ed_banner_section', 'slider_banner' );
+
+    if ( 'slider_banner' !== $ed_banner || ! ( is_front_page() || is_home() ) ) {
+        return 0;
+    }
+
+    $slider_image_source = get_theme_mod( 'slider_image_source', 'featured' );
+
+    if ( 'fixed' === $slider_image_source ) {
+        $fixed_slider_images = blossom_pinit_get_fixed_slider_images();
+
+        if ( ! empty( $fixed_slider_images[0]['image_id'] ) ) {
+            return absint( $fixed_slider_images[0]['image_id'] );
+        }
+
+        return 0;
+    }
+
+    $slider_type = get_theme_mod( 'slider_type', 'latest_posts' );
+    $slider_cat = get_theme_mod( 'slider_cat' );
+
+    $args = array(
+        'post_type' => 'post',
+        'post_status' => 'publish',
+        'ignore_sticky_posts' => true,
+        'posts_per_page' => 1,
+        'fields' => 'ids',
+        'no_found_rows' => true,
+    );
+
+    if ( 'cat' === $slider_type && $slider_cat ) {
+        $args['cat'] = $slider_cat;
+    }
+
+    $slider_posts = get_posts( $args );
+
+    if ( empty( $slider_posts ) ) {
+        return 0;
+    }
+
+    return absint( get_post_thumbnail_id( $slider_posts[0] ) );
+}
+
+function blossom_pinit_preload_hero_slider_image() {
+    $first_image_id = blossom_pinit_get_first_slider_image_id();
+
+    if ( ! $first_image_id ) {
+        return;
+    }
+
+    $image_size = 'full';
+    $image = wp_get_attachment_image_src( $first_image_id, $image_size );
+
+    if ( empty( $image[0] ) ) {
+        return;
+    }
+
+    $srcset = wp_get_attachment_image_srcset( $first_image_id, $image_size );
+    $sizes = wp_get_attachment_image_sizes( $first_image_id, $image_size );
+
+    echo '<link rel="preload" as="image" href="' . esc_url( $image[0] ) . '" fetchpriority="high"';
+
+    if ( ! empty( $srcset ) ) {
+        echo ' imagesrcset="' . esc_attr( $srcset ) . '"';
+    }
+
+    if ( ! empty( $sizes ) ) {
+        echo ' imagesizes="' . esc_attr( $sizes ) . '"';
+    }
+
+    echo ' />' . "\n";
+}
+add_action( 'wp_head', 'blossom_pinit_preload_hero_slider_image', 1 );
 
 function blossom_pinit_google_map_section() {
     if ( ! ( is_front_page() || is_home() ) ) {

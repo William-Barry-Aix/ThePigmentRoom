@@ -9,6 +9,164 @@ jQuery(document).ready(function($){
     var $bannerSlider = $('.banner-layout-two');
     var sliderAutoDirection = rtl ? 'prev.owl.carousel' : 'next.owl.carousel';
     var sliderItemCount = $bannerSlider.find('.item').length;
+    var deferredBannerImageQueue = [];
+    var deferredBannerIsLoading = false;
+    var deferredBannerRequestedMap = {};
+
+    function blossomPinitCollectDeferredBannerImageIds() {
+        var orderedIds = [];
+        var seenIds = {};
+
+        $bannerSlider.find('.owl-item:not(.cloned) img.banner-image[data-banner-image-id]').each(function() {
+            var imageId = $(this).attr('data-banner-image-id');
+
+            if ( imageId && !seenIds[imageId] ) {
+                seenIds[imageId] = true;
+                orderedIds.push(imageId);
+            }
+        });
+
+        if ( !orderedIds.length ) {
+            $bannerSlider.find('img.banner-image[data-banner-image-id]').each(function() {
+                var imageId = $(this).attr('data-banner-image-id');
+
+                if ( imageId && !seenIds[imageId] ) {
+                    seenIds[imageId] = true;
+                    orderedIds.push(imageId);
+                }
+            });
+        }
+
+        return orderedIds;
+    }
+
+    function blossomPinitGetActiveBannerImageIndex(orderedIds) {
+        var $activeImage = $bannerSlider.find('.owl-item.active:not(.cloned) img.banner-image[data-banner-image-id]').first();
+
+        if ( !$activeImage.length ) {
+            return 0;
+        }
+
+        return Math.max(0, $.inArray($activeImage.attr('data-banner-image-id'), orderedIds));
+    }
+
+    function blossomPinitBuildDeferredBannerQueue() {
+        var orderedIds = blossomPinitCollectDeferredBannerImageIds();
+        var queue = [];
+        var queued = {};
+        var activeIndex = blossomPinitGetActiveBannerImageIndex(orderedIds);
+        var total = orderedIds.length;
+        var distance;
+
+        if ( !total ) {
+            return queue;
+        }
+
+        for ( distance = 0; distance < total; distance++ ) {
+            var rightIndex = (activeIndex + distance) % total;
+            var leftIndex = (activeIndex - distance + total) % total;
+            var rightId = orderedIds[rightIndex];
+            var leftId = orderedIds[leftIndex];
+
+            if ( rightId && !queued[rightId] && !deferredBannerRequestedMap[rightId] ) {
+                queued[rightId] = true;
+                queue.push(rightId);
+            }
+
+            if ( leftId && !queued[leftId] && !deferredBannerRequestedMap[leftId] ) {
+                queued[leftId] = true;
+                queue.push(leftId);
+            }
+        }
+
+        return queue;
+    }
+
+    function blossomPinitHydrateBannerImageById(imageId, onDone) {
+        var selector = 'img.banner-image[data-banner-image-id="' + imageId + '"]';
+        var $targets = $bannerSlider.find(selector);
+        var $sourceImage = $targets.filter('[data-src]').first();
+        var src;
+        var srcset;
+        var sizes;
+        var preloader;
+
+        if ( !$targets.length || !$sourceImage.length ) {
+            onDone();
+            return;
+        }
+
+        src = $sourceImage.attr('data-src');
+        srcset = $sourceImage.attr('data-srcset');
+        sizes = $sourceImage.attr('data-sizes');
+        preloader = new Image();
+
+        preloader.decoding = 'async';
+        preloader.fetchPriority = 'low';
+
+        preloader.onload = preloader.onerror = function() {
+            $targets.each(function() {
+                var $img = $(this);
+
+                if ( $img.attr('data-src') ) {
+                    $img.attr('src', $img.attr('data-src')).removeAttr('data-src');
+                }
+
+                if ( $img.attr('data-srcset') ) {
+                    $img.attr('srcset', $img.attr('data-srcset')).removeAttr('data-srcset');
+                }
+
+                if ( $img.attr('data-sizes') ) {
+                    $img.attr('sizes', $img.attr('data-sizes')).removeAttr('data-sizes');
+                }
+
+                if ( this.complete && this.naturalWidth > 0 ) {
+                    $img.trigger('load');
+                }
+            });
+
+            onDone();
+        };
+
+        if ( srcset ) {
+            preloader.srcset = srcset;
+        }
+
+        if ( sizes ) {
+            preloader.sizes = sizes;
+        }
+
+        preloader.src = src;
+    }
+
+    function blossomPinitRequestNextDeferredBannerImage() {
+        var nextId;
+
+        if ( deferredBannerIsLoading ) {
+            return;
+        }
+
+        while ( deferredBannerImageQueue.length ) {
+            nextId = deferredBannerImageQueue.shift();
+
+            if ( nextId && !deferredBannerRequestedMap[nextId] ) {
+                deferredBannerRequestedMap[nextId] = true;
+                deferredBannerIsLoading = true;
+
+                blossomPinitHydrateBannerImageById(nextId, function() {
+                    deferredBannerIsLoading = false;
+                    blossomPinitRequestNextDeferredBannerImage();
+                });
+
+                return;
+            }
+        }
+    }
+
+    function blossomPinitKickoffDeferredBannerLoading() {
+        deferredBannerImageQueue = blossomPinitBuildDeferredBannerQueue();
+        blossomPinitRequestNextDeferredBannerImage();
+    }
 
     function blossomPinitSetBannerCaptionState(shouldReveal) {
         var $textHolder = $bannerSlider.find('.text-holder');
@@ -26,6 +184,7 @@ jQuery(document).ready(function($){
 
     $bannerSlider.on('initialized.owl.carousel translated.owl.carousel refreshed.owl.carousel', function() {
         blossomPinitSetBannerCaptionState(true);
+        blossomPinitKickoffDeferredBannerLoading();
     });
 
     $bannerSlider
@@ -112,10 +271,14 @@ jQuery(document).ready(function($){
     }
 
     $bannerSlider.find('img').on('load', function(){
+        if ( $(this).attr('data-src') ) {
+            return;
+        }
+
         $(this).addClass('is-loaded');
         $(this).closest('.item').addClass('has-loaded-image');
     }).each(function(){
-        if ( this.complete && this.naturalWidth > 0 ) {
+        if ( !$(this).attr('data-src') && this.complete && this.naturalWidth > 0 ) {
             $(this).trigger('load');
         }
     });
