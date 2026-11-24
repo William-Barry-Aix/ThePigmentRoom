@@ -113,6 +113,7 @@ while ( have_posts() ) :
         }
 
         .promo-offer {
+            position: relative;
             display: grid;
             grid-template-columns: 1fr 1fr;
             border: 1px solid var(--promo-border);
@@ -170,16 +171,20 @@ while ( have_posts() ) :
 
         .promo-price-ribbon {
             margin: 0;
-            margin-left: calc(50% - 50vw);
-            width: min(420px, calc(100vw - 18px));
-            background: linear-gradient(135deg, var(--promo-accent), var(--promo-accent-dark));
-            color: #fff;
-            border-radius: 0 22px 22px 0;
-            box-shadow: 0 14px 26px rgba(154, 67, 40, 0.3);
+            width: fit-content;
+            background: var(--promo-paper);
+            color: var(--promo-ink);
+            border: 1px solid var(--promo-border);
+            border-radius: 16px;
+            box-shadow: 0 12px 26px rgba(34, 20, 20, 0.2);
             display: inline-flex;
             align-items: center;
             gap: 14px;
-            padding: 14px 26px;
+            padding: 12px 20px;
+            position: absolute;
+            left: 14px;
+            bottom: 14px;
+            z-index: 3;
         }
 
         .promo-price-now {
@@ -190,10 +195,10 @@ while ( have_posts() ) :
 
         .promo-price-was {
             font-size: clamp(1rem, 2.4vw, 1.2rem);
-            opacity: 0.9;
+            opacity: 0.75;
             text-decoration: line-through;
             text-decoration-thickness: 2px;
-            text-decoration-color: rgba(255, 255, 255, 0.72);
+            text-decoration-color: rgba(34, 20, 20, 0.45);
         }
 
         @media only screen and (max-width: 900px) {
@@ -218,8 +223,10 @@ while ( have_posts() ) :
             }
 
             .promo-price-ribbon {
-                width: min(360px, calc(100vw - 12px));
-                padding: 12px 18px;
+                max-width: calc(100% - 20px);
+                padding: 10px 14px;
+                left: 10px;
+                bottom: 10px;
             }
         }
     </style>
@@ -245,12 +252,11 @@ while ( have_posts() ) :
                     <h2 class="promo-title">Lipblush</h2>
                     <p class="promo-description">des lèvres délicatement rosées au contour défini</p>
                 </div>
+                <p class="promo-price-ribbon" aria-label="Prix Lipblush">
+                    <span class="promo-price-now">450$</span>
+                    <span class="promo-price-was">550$</span>
+                </p>
             </section>
-
-            <p class="promo-price-ribbon" aria-label="Prix Lipblush">
-                <span class="promo-price-now">450$</span>
-                <span class="promo-price-was">550$</span>
-            </p>
 
             <section class="promo-offer reverse" aria-label="Offre Lash lift coréen">
                 <div class="promo-media">
@@ -262,12 +268,11 @@ while ( have_posts() ) :
                     <h2 class="promo-title">Lash lift coréen</h2>
                     <p class="promo-description">un regard ouvert et des cils qui semblent plus longs</p>
                 </div>
+                <p class="promo-price-ribbon" aria-label="Prix Lash lift coréen">
+                    <span class="promo-price-now">90$</span>
+                    <span class="promo-price-was">110$</span>
+                </p>
             </section>
-
-            <p class="promo-price-ribbon" aria-label="Prix Lash lift coréen">
-                <span class="promo-price-now">90$</span>
-                <span class="promo-price-was">110$</span>
-            </p>
         </div>
     </main>
 
