@@ -118,7 +118,7 @@ while ( have_posts() ) :
             grid-template-columns: 1fr 1fr;
             border: 1px solid var(--promo-border);
             border-radius: 28px;
-            overflow: hidden;
+            overflow: visible;
             background: var(--promo-paper);
             box-shadow: var(--promo-shadow);
         }
@@ -182,9 +182,14 @@ while ( have_posts() ) :
             gap: 14px;
             padding: 12px 20px;
             position: absolute;
-            left: 14px;
+            right: -18px;
             bottom: 14px;
             z-index: 3;
+        }
+
+        .promo-offer.reverse .promo-price-ribbon {
+            right: auto;
+            left: -18px;
         }
 
         .promo-price-now {
@@ -225,8 +230,12 @@ while ( have_posts() ) :
             .promo-price-ribbon {
                 max-width: calc(100% - 20px);
                 padding: 10px 14px;
-                left: 10px;
+                right: 10px;
                 bottom: 10px;
+            }
+
+            .promo-offer.reverse .promo-price-ribbon {
+                left: 10px;
             }
         }
     </style>
