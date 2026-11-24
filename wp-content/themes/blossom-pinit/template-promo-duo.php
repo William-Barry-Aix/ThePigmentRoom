@@ -112,6 +112,41 @@ while ( have_posts() ) :
             font-weight: 700;
         }
 
+        .promo-duo-bands {
+            border-radius: 22px;
+            overflow: hidden;
+            box-shadow: var(--promo-shadow);
+            border: 1px solid var(--promo-border);
+        }
+
+        .promo-duo-band {
+            margin: 0;
+            padding: clamp(16px, 2.4vw, 24px) clamp(18px, 3vw, 34px);
+            text-align: center;
+            font-size: clamp(1rem, 2.1vw, 1.18rem);
+            line-height: 1.5;
+        }
+
+        .promo-duo-band-light {
+            background: #fff;
+            color: var(--promo-ink);
+        }
+
+        .promo-duo-band-dark {
+            background: #2a1c1c;
+            color: #fff;
+        }
+
+        .promo-duo-band-title {
+            display: block;
+            font-family: var(--secondary-font);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            font-size: clamp(1.35rem, 3vw, 2rem);
+            line-height: 1;
+            margin-bottom: 6px;
+        }
+
         .promo-offer {
             position: relative;
             display: grid;
@@ -227,6 +262,11 @@ while ( have_posts() ) :
                 margin-left: 0;
             }
 
+            .promo-duo-band {
+                text-align: left;
+                padding: 14px 16px;
+            }
+
             .promo-price-ribbon {
                 max-width: calc(100% - 20px);
                 padding: 10px 14px;
@@ -250,6 +290,16 @@ while ( have_posts() ) :
             </section>
 
             <p class="promo-kicker">JUSTE À TEMPS POUR LES FÊTES</p>
+
+            <section class="promo-duo-bands" aria-label="Informations duo">
+                <p class="promo-duo-band promo-duo-band-light">
+                    <span class="promo-duo-band-title">LE DUO</span>
+                    Le parfait combo pour sublimer votre beauté.
+                </p>
+                <p class="promo-duo-band promo-duo-band-dark">
+                    Choisissez les deux et profitez de votre retouche Lip Blush incluse (valeur de 50 $)
+                </p>
+            </section>
 
             <section class="promo-offer" aria-label="Offre Lipblush">
                 <div class="promo-media">
