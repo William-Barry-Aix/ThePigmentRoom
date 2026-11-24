@@ -291,16 +291,6 @@ while ( have_posts() ) :
 
             <p class="promo-kicker">JUSTE À TEMPS POUR LES FÊTES</p>
 
-            <section class="promo-duo-bands" aria-label="Informations duo">
-                <p class="promo-duo-band promo-duo-band-light">
-                    <span class="promo-duo-band-title">LE DUO</span>
-                    Le parfait combo pour sublimer votre beauté.
-                </p>
-                <p class="promo-duo-band promo-duo-band-dark">
-                    Choisissez les deux et profitez de votre retouche Lip Blush incluse (valeur de 50 $)
-                </p>
-            </section>
-
             <section class="promo-offer" aria-label="Offre Lipblush">
                 <div class="promo-media">
                     <?php if ( $lipblush_image_url ) : ?>
@@ -330,6 +320,16 @@ while ( have_posts() ) :
                 <p class="promo-price-ribbon" aria-label="Prix Lash lift coréen">
                     <span class="promo-price-now">90$</span>
                     <span class="promo-price-was">110$</span>
+                </p>
+            </section>
+
+            <section class="promo-duo-bands" aria-label="Informations duo">
+                <p class="promo-duo-band promo-duo-band-light">
+                    <span class="promo-duo-band-title">LE DUO</span>
+                    Le parfait combo pour sublimer votre beauté.
+                </p>
+                <p class="promo-duo-band promo-duo-band-dark">
+                    Choisissez les deux et profitez de votre retouche Lip Blush incluse (valeur de 50 $)
                 </p>
             </section>
         </div>
