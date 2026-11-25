@@ -270,20 +270,20 @@ while ( have_posts() ) :
         }
 
         .promo-work-line.one-square {
-            justify-content: center;
+            justify-content: stretch;
         }
 
         .promo-work-line.one-square .promo-work-line-shot {
-            width: min(50%, 320px);
+            width: 100%;
             aspect-ratio: 1 / 1;
         }
 
         .promo-work-line.one-portrait {
-            justify-content: center;
+            justify-content: stretch;
         }
 
         .promo-work-line.one-portrait .promo-work-line-shot {
-            width: min(50%, 280px);
+            width: 100%;
             aspect-ratio: 152 / 202;
         }
 
