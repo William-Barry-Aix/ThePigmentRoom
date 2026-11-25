@@ -399,14 +399,6 @@ while ( have_posts() ) :
 
             <p class="promo-kicker">JUSTE À TEMPS POUR LES FÊTES</p>
 
-            <section class="promo-work-intro" aria-label="Section mon travail">
-                <hr class="promo-work-divider" aria-hidden="true">
-                <h2 class="promo-work-title">MON TRAVAIL</h2>
-                <p class="promo-work-subtitle">ET QUELQUES AVANT/APRÈS</p>
-                <p class="promo-work-tagline">DES RÉSULTATS NATURELS, QUI VOUS RESSEMBLENT</p>
-                <hr class="promo-work-divider" aria-hidden="true">
-            </section>
-
             <section class="promo-offer" aria-label="Offre Lipblush">
                 <div class="promo-media">
                     <?php if ( $lipblush_image_url ) : ?>
@@ -466,6 +458,14 @@ while ( have_posts() ) :
                         <p class="promo-detail-card-text">Rehaussement de cils nouvelle génération plus doux et plus avancé . Il ouvre le regard, recourbe et colore vos cils naturels en profondeur pour un résultat impeccable à chaque matin.</p>
                     </div>
                 </article>
+            </section>
+
+            <section class="promo-work-intro" aria-label="Section mon travail">
+                <hr class="promo-work-divider" aria-hidden="true">
+                <h2 class="promo-work-title">MON TRAVAIL</h2>
+                <p class="promo-work-subtitle">ET QUELQUES AVANT/APRÈS</p>
+                <p class="promo-work-tagline">DES RÉSULTATS NATURELS, QUI VOUS RESSEMBLENT</p>
+                <hr class="promo-work-divider" aria-hidden="true">
             </section>
         </div>
     </main>
