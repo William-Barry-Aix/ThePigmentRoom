@@ -394,6 +394,32 @@ while ( have_posts() ) :
             height: 100%;
         }
 
+        .promo-shop-address {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            width: 100%;
+            margin: 0;
+        }
+
+        .promo-shop-address-line {
+            flex: 1;
+            min-width: 40px;
+            border: 0;
+            border-top: 1px solid #7b391a;
+            margin: 0;
+            opacity: 0.9;
+        }
+
+        .promo-shop-address-text {
+            margin: 0;
+            text-align: center;
+            color: #7b391a;
+            line-height: 1.45;
+            font-size: clamp(0.98rem, 1.9vw, 1.12rem);
+            white-space: nowrap;
+        }
+
         .promo-duo-bands {
             border-radius: 22px;
             overflow: hidden;
@@ -660,6 +686,14 @@ while ( have_posts() ) :
             .promo-about-content-reverse {
                 grid-template-columns: 1fr 1fr;
             }
+
+            .promo-shop-address {
+                gap: 10px;
+            }
+
+            .promo-shop-address-text {
+                white-space: normal;
+            }
         }
     </style>
 
@@ -842,6 +876,12 @@ while ( have_posts() ) :
                         <?php endif; ?>
                     </figure>
                 </div>
+            </section>
+
+            <section class="promo-shop-address" aria-label="Adresse du shop">
+                <hr class="promo-shop-address-line" aria-hidden="true">
+                <p class="promo-shop-address-text">467 Rue de Port-Royal Ouest<br>Montreal</p>
+                <hr class="promo-shop-address-line" aria-hidden="true">
             </section>
         </div>
     </main>
