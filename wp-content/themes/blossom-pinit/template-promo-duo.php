@@ -109,6 +109,46 @@ while ( have_posts() ) :
             font-weight: 700;
         }
 
+        .promo-work-intro {
+            display: grid;
+            gap: 12px;
+            text-align: center;
+            margin: 0;
+        }
+
+        .promo-work-divider {
+            margin: 0;
+            border: 0;
+            border-top: 1px solid var(--promo-border);
+        }
+
+        .promo-work-title,
+        .promo-work-subtitle,
+        .promo-work-tagline {
+            margin: 0;
+            text-transform: uppercase;
+        }
+
+        .promo-work-title {
+            font-family: var(--secondary-font);
+            letter-spacing: 0.08em;
+            font-size: clamp(1.8rem, 3.8vw, 2.8rem);
+            line-height: 1;
+        }
+
+        .promo-work-subtitle {
+            font-size: clamp(1rem, 2.1vw, 1.25rem);
+            letter-spacing: 0.18em;
+            font-weight: 700;
+        }
+
+        .promo-work-tagline {
+            font-size: clamp(0.9rem, 1.8vw, 1.05rem);
+            letter-spacing: 0.13em;
+            font-weight: 600;
+            opacity: 0.9;
+        }
+
         .promo-duo-bands {
             border-radius: 22px;
             overflow: hidden;
@@ -358,6 +398,14 @@ while ( have_posts() ) :
             </section>
 
             <p class="promo-kicker">JUSTE À TEMPS POUR LES FÊTES</p>
+
+            <section class="promo-work-intro" aria-label="Section mon travail">
+                <hr class="promo-work-divider" aria-hidden="true">
+                <h2 class="promo-work-title">MON TRAVAIL</h2>
+                <p class="promo-work-subtitle">ET QUELQUES AVANT/APRÈS</p>
+                <p class="promo-work-tagline">DES RÉSULTATS NATURELS, QUI VOUS RESSEMBLENT</p>
+                <hr class="promo-work-divider" aria-hidden="true">
+            </section>
 
             <section class="promo-offer" aria-label="Offre Lipblush">
                 <div class="promo-media">
