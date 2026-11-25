@@ -318,6 +318,29 @@ while ( have_posts() ) :
             display: block;
         }
 
+        .promo-work-cta {
+            display: inline-flex;
+            justify-self: center;
+            align-items: center;
+            padding: 12px 26px;
+            border: 1px solid #7b391a;
+            border-radius: 999px;
+            background: #7b391a;
+            color: #fbeee9;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            font-weight: 700;
+            text-decoration: none;
+            line-height: 1;
+            transition: background-color 0.2s ease, color 0.2s ease;
+        }
+
+        .promo-work-cta:hover,
+        .promo-work-cta:focus-visible {
+            background: #fbeee9;
+            color: #7b391a;
+        }
+
         .promo-duo-bands {
             border-radius: 22px;
             overflow: hidden;
@@ -735,6 +758,7 @@ while ( have_posts() ) :
                         </figure>
                     </div>
                 </div>
+                <a class="promo-work-cta" href="<?php echo esc_url( home_url( '/rendez-vous/' ) ); ?>">Rendez-vous</a>
             </section>
         </div>
     </main>
