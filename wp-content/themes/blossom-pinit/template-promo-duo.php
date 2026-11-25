@@ -758,7 +758,7 @@ while ( have_posts() ) :
                         </figure>
                     </div>
                 </div>
-                <a class="promo-work-cta" href="<?php echo esc_url( home_url( '/rendez-vous/' ) ); ?>">Rendez-vous</a>
+                <a class="promo-work-cta" href="<?php echo esc_url( home_url( '/reservation/' ) ); ?>">Rendez-vous</a>
             </section>
         </div>
     </main>
