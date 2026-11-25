@@ -48,6 +48,7 @@ while ( have_posts() ) :
     $work_row4_right_url = $resolve_image_url( '_promo_duo_work_row4_right', $lipblush_image_url );
     $work_row5_square_url = $resolve_image_url( '_promo_duo_work_row5_square', $lipblush_image_url );
     $work_row6_portrait_url = $resolve_image_url( '_promo_duo_work_row6_portrait', $lipblush_image_url );
+    $about_image_url = $resolve_image_url( '_promo_duo_about_image', $hero_image_url );
     ?>
 
     <style>
@@ -341,6 +342,42 @@ while ( have_posts() ) :
             color: #7b391a;
         }
 
+        .promo-about-content {
+            display: grid;
+            grid-template-columns: 161px 1fr;
+            align-items: center;
+            gap: 18px;
+            width: 100%;
+            max-width: 100%;
+            min-width: 0;
+            margin: 0;
+        }
+
+        .promo-about-photo {
+            margin: 0;
+            width: 161px;
+            height: 241px;
+            border-radius: 14px;
+            overflow: hidden;
+            border: 1px solid rgba(123, 57, 26, 0.28);
+            box-shadow: 0 10px 22px rgba(34, 20, 20, 0.12);
+            background: linear-gradient(145deg, #e5c1b2, #c9927b);
+        }
+
+        .promo-about-photo img {
+            width: 161px;
+            height: 241px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .promo-about-text {
+            margin: 0;
+            text-align: left;
+            line-height: 1.6;
+            font-size: clamp(1rem, 2vw, 1.15rem);
+        }
+
         .promo-duo-bands {
             border-radius: 22px;
             overflow: hidden;
@@ -599,6 +636,16 @@ while ( have_posts() ) :
             .promo-work-line.one-portrait .promo-work-line-shot {
                 width: 100%;
             }
+
+            .promo-about-content {
+                grid-template-columns: 1fr;
+                justify-items: center;
+                text-align: center;
+            }
+
+            .promo-about-text {
+                text-align: center;
+            }
         }
     </style>
 
@@ -765,6 +812,14 @@ while ( have_posts() ) :
                 <hr class="promo-work-divider" aria-hidden="true">
                 <h2 class="promo-work-title">À PROPOS DE MOI</h2>
                 <hr class="promo-work-divider" aria-hidden="true">
+                <div class="promo-about-content">
+                    <figure class="promo-about-photo">
+                        <?php if ( $about_image_url ) : ?>
+                            <img src="<?php echo esc_url( $about_image_url ); ?>" alt="Portrait de Lisa" loading="lazy">
+                        <?php endif; ?>
+                    </figure>
+                    <p class="promo-about-text">Moi c’est Lisa, passionnée par la beauté, j’aime aider les femmes à se sentir bien dans leur peau. À travers le Lip Blush et le Lash Lift, mon but est de mettre en valeur votre beauté naturelle.</p>
+                </div>
             </section>
         </div>
     </main>
