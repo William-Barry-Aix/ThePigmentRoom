@@ -67,6 +67,10 @@ while ( have_posts() ) :
             padding-bottom: 72px;
         }
 
+        #colophon {
+            margin: 0 !important;
+        }
+
         .promo-duo-wrap {
             width: min(1080px, calc(100% - 32px));
             margin: 0 auto;
