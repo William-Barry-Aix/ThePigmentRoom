@@ -498,12 +498,12 @@ while ( have_posts() ) :
                 <h2 class="promo-work-title">MON TRAVAIL</h2>
                 <p class="promo-work-subtitle">ET QUELQUES AVANT/APRÈS</p>
                 <p class="promo-work-tagline">DES RÉSULTATS NATURELS, QUI VOUS RESSEMBLENT</p>
+                <hr class="promo-work-divider" aria-hidden="true">
                 <div class="promo-work-row" aria-label="Sous-section lipblush">
                     <h3 class="promo-work-row-title">lipblush</h3>
                     <p class="promo-work-row-text">des lèvres sublimées au naturel</p>
                     <span class="promo-work-row-separator" aria-hidden="true"></span>
                 </div>
-                <hr class="promo-work-divider" aria-hidden="true">
             </section>
         </div>
     </main>
