@@ -48,10 +48,7 @@ while ( have_posts() ) :
             --promo-accent-dark: #9a4328;
             --promo-border: rgba(34, 20, 20, 0.14);
             --promo-shadow: 0 22px 48px rgba(34, 20, 20, 0.14);
-            background:
-                radial-gradient(circle at 12% 8%, rgba(201, 107, 76, 0.16), transparent 48%),
-                radial-gradient(circle at 88% 24%, rgba(154, 67, 40, 0.12), transparent 45%),
-                var(--promo-bg);
+            background: transparent;
             color: var(--promo-ink);
             font-family: var(--primary-font);
             padding-bottom: 72px;
