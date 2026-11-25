@@ -125,6 +125,8 @@ while ( have_posts() ) :
             gap: 12px;
             text-align: center;
             margin: 0;
+            width: 100%;
+            max-width: 100%;
         }
 
         .promo-work-divider {
@@ -196,6 +198,8 @@ while ( have_posts() ) :
         .promo-work-gallery {
             display: flex;
             width: 100%;
+            max-width: 100%;
+            min-width: 0;
             gap: 14px;
             margin: 0;
         }
@@ -206,6 +210,8 @@ while ( have_posts() ) :
             flex: 1 1 0;
             min-width: 0;
             aspect-ratio: 152 / 202;
+            max-width: 100%;
+            box-sizing: border-box;
             border-radius: 14px;
             overflow: hidden;
             border: 1px solid rgba(123, 57, 26, 0.28);
@@ -248,6 +254,8 @@ while ( have_posts() ) :
             display: grid;
             gap: 14px;
             width: 100%;
+            max-width: 100%;
+            min-width: 0;
             margin: 0;
         }
 
@@ -255,6 +263,8 @@ while ( have_posts() ) :
             display: flex;
             gap: 14px;
             width: 100%;
+            max-width: 100%;
+            min-width: 0;
             margin: 0;
         }
 
@@ -275,6 +285,7 @@ while ( have_posts() ) :
 
         .promo-work-line.one-square .promo-work-line-shot {
             width: 100%;
+            max-width: 100%;
             aspect-ratio: 1 / 1;
         }
 
@@ -284,12 +295,15 @@ while ( have_posts() ) :
 
         .promo-work-line.one-portrait .promo-work-line-shot {
             width: 100%;
+            max-width: 100%;
             aspect-ratio: 152 / 202;
         }
 
         .promo-work-line-shot {
             position: relative;
             margin: 0;
+            max-width: 100%;
+            box-sizing: border-box;
             border-radius: 14px;
             overflow: hidden;
             border: 1px solid rgba(123, 57, 26, 0.28);
