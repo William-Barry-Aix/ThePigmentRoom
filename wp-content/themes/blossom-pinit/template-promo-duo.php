@@ -150,6 +150,38 @@ while ( have_posts() ) :
             opacity: 0.9;
         }
 
+        .promo-work-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 0;
+            color: #7b391a;
+        }
+
+        .promo-work-row-title {
+            margin: 0;
+            text-transform: uppercase;
+            font-family: var(--secondary-font);
+            font-size: clamp(1.15rem, 2.3vw, 1.5rem);
+            letter-spacing: 0.06em;
+            white-space: nowrap;
+        }
+
+        .promo-work-row-text {
+            margin: 0;
+            font-size: clamp(0.95rem, 1.9vw, 1.1rem);
+            letter-spacing: 0.03em;
+            white-space: nowrap;
+        }
+
+        .promo-work-row-separator {
+            flex: 1;
+            min-width: 70px;
+            height: 1px;
+            background: #7b391a;
+            opacity: 0.95;
+        }
+
         .promo-duo-bands {
             border-radius: 22px;
             overflow: hidden;
@@ -466,6 +498,11 @@ while ( have_posts() ) :
                 <h2 class="promo-work-title">MON TRAVAIL</h2>
                 <p class="promo-work-subtitle">ET QUELQUES AVANT/APRÈS</p>
                 <p class="promo-work-tagline">DES RÉSULTATS NATURELS, QUI VOUS RESSEMBLENT</p>
+                <div class="promo-work-row" aria-label="Sous-section lipblush">
+                    <h3 class="promo-work-row-title">lipblush</h3>
+                    <p class="promo-work-row-text">des lèvres sublimées au naturel</p>
+                    <span class="promo-work-row-separator" aria-hidden="true"></span>
+                </div>
                 <hr class="promo-work-divider" aria-hidden="true">
             </section>
         </div>
