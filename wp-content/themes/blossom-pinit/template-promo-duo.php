@@ -64,7 +64,7 @@ while ( have_posts() ) :
             background: transparent;
             color: var(--promo-ink);
             font-family: var(--primary-font);
-            padding-bottom: 72px;
+            padding-bottom: 0;
         }
 
         #colophon {
