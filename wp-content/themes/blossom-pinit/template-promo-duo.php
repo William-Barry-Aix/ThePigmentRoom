@@ -37,6 +37,8 @@ while ( have_posts() ) :
     $hero_image_url     = $resolve_image_url( '_promo_duo_hero_image', $hero_fallback );
     $lipblush_image_url = $resolve_image_url( '_promo_duo_lipblush_image' );
     $lashlift_image_url = $resolve_image_url( '_promo_duo_lashlift_image' );
+    $lipblush_before_url = $resolve_image_url( '_promo_duo_lipblush_before_image', $lipblush_image_url );
+    $lipblush_after_url  = $resolve_image_url( '_promo_duo_lipblush_after_image', $lipblush_image_url );
     ?>
 
     <style>
@@ -180,6 +182,56 @@ while ( have_posts() ) :
             height: 1px;
             background: #7b391a;
             opacity: 0.95;
+        }
+
+        .promo-work-gallery {
+            display: flex;
+            justify-content: center;
+            gap: 14px;
+            margin: 0;
+        }
+
+        .promo-work-shot {
+            position: relative;
+            margin: 0;
+            width: 152px;
+            height: 202px;
+            border-radius: 14px;
+            overflow: hidden;
+            border: 1px solid rgba(123, 57, 26, 0.28);
+            box-shadow: 0 10px 22px rgba(34, 20, 20, 0.12);
+            background: linear-gradient(145deg, #e5c1b2, #c9927b);
+        }
+
+        .promo-work-shot img {
+            width: 152px;
+            height: 202px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .promo-work-badge {
+            position: absolute;
+            top: 8px;
+            z-index: 2;
+            margin: 0;
+            padding: 5px 9px;
+            border-radius: 999px;
+            background: #7b391a;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            font-size: 0.66rem;
+            font-weight: 700;
+            line-height: 1;
+        }
+
+        .promo-work-badge-left {
+            left: 8px;
+        }
+
+        .promo-work-badge-right {
+            right: 8px;
         }
 
         .promo-duo-bands {
@@ -418,6 +470,15 @@ while ( have_posts() ) :
             .promo-detail-card:first-child .promo-detail-card-body::after {
                 display: none;
             }
+
+            .promo-work-row {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .promo-work-row-separator {
+                flex-basis: 100%;
+            }
         }
     </style>
 
@@ -503,6 +564,20 @@ while ( have_posts() ) :
                     <h3 class="promo-work-row-title">lipblush</h3>
                     <p class="promo-work-row-text">des lèvres sublimées au naturel</p>
                     <span class="promo-work-row-separator" aria-hidden="true"></span>
+                </div>
+                <div class="promo-work-gallery" aria-label="Lipblush avant après">
+                    <figure class="promo-work-shot">
+                        <span class="promo-work-badge promo-work-badge-left">Avant</span>
+                        <?php if ( $lipblush_before_url ) : ?>
+                            <img src="<?php echo esc_url( $lipblush_before_url ); ?>" alt="Lipblush avant" loading="lazy">
+                        <?php endif; ?>
+                    </figure>
+                    <figure class="promo-work-shot">
+                        <span class="promo-work-badge promo-work-badge-right">Après</span>
+                        <?php if ( $lipblush_after_url ) : ?>
+                            <img src="<?php echo esc_url( $lipblush_after_url ); ?>" alt="Lipblush après" loading="lazy">
+                        <?php endif; ?>
+                    </figure>
                 </div>
             </section>
         </div>
