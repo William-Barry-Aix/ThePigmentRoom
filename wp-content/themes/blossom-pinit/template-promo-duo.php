@@ -420,6 +420,32 @@ while ( have_posts() ) :
             white-space: nowrap;
         }
 
+        .promo-full-map-section {
+            width: 100vw;
+            max-width: 100vw;
+            margin-left: calc(50% - 50vw);
+            margin-right: calc(50% - 50vw);
+            padding-top: 24px;
+            overflow: hidden;
+        }
+
+        .promo-full-map-wrap {
+            overflow: hidden;
+            border: 0;
+            border-radius: 0;
+            box-shadow: 0 14px 40px rgba(123, 57, 26, 0.12);
+            background: #fff;
+        }
+
+        .promo-full-map-wrap iframe {
+            display: block;
+            width: 100%;
+            height: 420px;
+            border: 0;
+            -webkit-filter: none;
+            filter: none;
+        }
+
         .promo-duo-bands {
             border-radius: 22px;
             overflow: hidden;
@@ -694,6 +720,14 @@ while ( have_posts() ) :
             .promo-shop-address-text {
                 white-space: normal;
             }
+
+            .promo-full-map-section {
+                padding-top: 20px;
+            }
+
+            .promo-full-map-wrap iframe {
+                height: 280px;
+            }
         }
     </style>
 
@@ -885,6 +919,18 @@ while ( have_posts() ) :
             </section>
         </div>
     </main>
+
+    <section class="promo-full-map-section" aria-label="Carte du shop">
+        <div class="promo-full-map-wrap">
+            <iframe
+                title="The Pigment Room location map"
+                src="<?php echo esc_url( 'https://www.google.com/maps?q=' . rawurlencode( '467 Rue de Port-Royal Ouest, Montreal, QC' ) . '&z=11&output=embed' ); ?>"
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                allowfullscreen>
+            </iframe>
+        </div>
+    </section>
 
 <?php
 endwhile;
