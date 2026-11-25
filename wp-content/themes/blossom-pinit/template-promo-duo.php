@@ -117,9 +117,10 @@ while ( have_posts() ) :
         }
 
         .promo-work-divider {
-            margin: 0;
+            width: min(220px, 42vw);
+            margin: 0 auto;
             border: 0;
-            border-top: 1px solid var(--promo-border);
+            border-top: 1px solid #7b391a;
         }
 
         .promo-work-title,
