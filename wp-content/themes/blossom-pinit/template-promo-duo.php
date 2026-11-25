@@ -344,7 +344,7 @@ while ( have_posts() ) :
 
         .promo-about-content {
             display: grid;
-            grid-template-columns: 161px 1fr;
+            grid-template-columns: 1fr 1fr;
             align-items: center;
             gap: 18px;
             width: 100%;
@@ -355,8 +355,8 @@ while ( have_posts() ) :
 
         .promo-about-photo {
             margin: 0;
-            width: 161px;
-            height: 241px;
+            width: 100%;
+            aspect-ratio: 161 / 241;
             border-radius: 14px;
             overflow: hidden;
             border: 1px solid rgba(123, 57, 26, 0.28);
@@ -365,8 +365,8 @@ while ( have_posts() ) :
         }
 
         .promo-about-photo img {
-            width: 161px;
-            height: 241px;
+            width: 100%;
+            height: 100%;
             object-fit: cover;
             display: block;
         }
@@ -638,13 +638,7 @@ while ( have_posts() ) :
             }
 
             .promo-about-content {
-                grid-template-columns: 1fr;
-                justify-items: center;
-                text-align: center;
-            }
-
-            .promo-about-text {
-                text-align: center;
+                gap: 10px;
             }
         }
     </style>
