@@ -161,6 +161,8 @@ while ( have_posts() ) :
             padding: clamp(20px, 3vw, 32px);
             display: grid;
             gap: 10px;
+            background: var(--promo-paper);
+            color: var(--promo-ink);
         }
 
         .promo-detail-card-title {
@@ -170,6 +172,9 @@ while ( have_posts() ) :
             letter-spacing: 0.08em;
             font-size: clamp(1.3rem, 2.4vw, 1.9rem);
             line-height: 1.05;
+            width: fit-content;
+            padding: 8px 14px;
+            border-radius: 12px;
         }
 
         .promo-detail-card-text {
@@ -178,12 +183,13 @@ while ( have_posts() ) :
             font-size: clamp(0.98rem, 1.9vw, 1.12rem);
         }
 
-        .promo-detail-card-light {
+        .promo-detail-card-title-light {
             background: #fff;
             color: var(--promo-ink);
+            border: 1px solid var(--promo-border);
         }
 
-        .promo-detail-card-dark {
+        .promo-detail-card-title-dark {
             background: #1c1212;
             color: #fff;
         }
@@ -379,12 +385,12 @@ while ( have_posts() ) :
             </section>
 
             <section class="promo-detail-grid" aria-label="Détails des services">
-                <article class="promo-detail-card promo-detail-card-light">
-                    <h3 class="promo-detail-card-title">Lipblush</h3>
+                <article class="promo-detail-card">
+                    <h3 class="promo-detail-card-title promo-detail-card-title-light">Lipblush</h3>
                     <p class="promo-detail-card-text">Technique de maquillage semi permanent qui rehausse la couleur des lèvres, redéfinit les contours et les rend plus uniformes. Un effet bonne mine sans maquillage quotidien.</p>
                 </article>
-                <article class="promo-detail-card promo-detail-card-dark">
-                    <h3 class="promo-detail-card-title">Corean Lashlift</h3>
+                <article class="promo-detail-card">
+                    <h3 class="promo-detail-card-title promo-detail-card-title-dark">Corean Lashlift</h3>
                     <p class="promo-detail-card-text">Rehaussement de cils nouvelle génération plus doux et plus avancé . Il ouvre le regard, recourbe et colore vos cils naturels en profondeur pour un résultat impeccable à chaque matin.</p>
                 </article>
             </section>
