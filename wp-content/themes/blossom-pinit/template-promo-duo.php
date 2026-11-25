@@ -380,19 +380,18 @@ while ( have_posts() ) :
         }
 
         .promo-about-content-reverse {
-            grid-template-columns: 1fr 189px;
+            grid-template-columns: 1fr 1fr;
         }
 
         .promo-about-photo-landscape {
-            width: 189px;
-            height: 168px;
-            justify-self: end;
-            aspect-ratio: auto;
+            width: 100%;
+            justify-self: stretch;
+            aspect-ratio: 189 / 168;
         }
 
         .promo-about-photo-landscape img {
-            width: 189px;
-            height: 168px;
+            width: 100%;
+            height: 100%;
         }
 
         .promo-duo-bands {
@@ -659,13 +658,7 @@ while ( have_posts() ) :
             }
 
             .promo-about-content-reverse {
-                grid-template-columns: 1fr 140px;
-            }
-
-            .promo-about-photo-landscape,
-            .promo-about-photo-landscape img {
-                width: 140px;
-                height: 124px;
+                grid-template-columns: 1fr 1fr;
             }
         }
     </style>
