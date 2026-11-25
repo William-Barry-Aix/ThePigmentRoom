@@ -760,6 +760,12 @@ while ( have_posts() ) :
                 </div>
                 <a class="promo-work-cta" href="<?php echo esc_url( home_url( '/reservation/' ) ); ?>">Rendez-vous</a>
             </section>
+
+            <section class="promo-work-intro" aria-label="Section à propos de moi">
+                <hr class="promo-work-divider" aria-hidden="true">
+                <h2 class="promo-work-title">À PROPOS DE MOI</h2>
+                <hr class="promo-work-divider" aria-hidden="true">
+            </section>
         </div>
     </main>
 
