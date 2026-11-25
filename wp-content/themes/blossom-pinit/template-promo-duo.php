@@ -39,6 +39,15 @@ while ( have_posts() ) :
     $lashlift_image_url = $resolve_image_url( '_promo_duo_lashlift_image' );
     $lipblush_before_url = $resolve_image_url( '_promo_duo_lipblush_before_image', $lipblush_image_url );
     $lipblush_after_url  = $resolve_image_url( '_promo_duo_lipblush_after_image', $lipblush_image_url );
+    $work_row1_left_url  = $resolve_image_url( '_promo_duo_work_row1_left', $lipblush_image_url );
+    $work_row1_right_url = $resolve_image_url( '_promo_duo_work_row1_right', $lipblush_image_url );
+    $work_row2_wide_url  = $resolve_image_url( '_promo_duo_work_row2_wide', $lipblush_image_url );
+    $work_row3_left_url  = $resolve_image_url( '_promo_duo_work_row3_left', $lipblush_image_url );
+    $work_row3_right_url = $resolve_image_url( '_promo_duo_work_row3_right', $lipblush_image_url );
+    $work_row4_left_url  = $resolve_image_url( '_promo_duo_work_row4_left', $lipblush_image_url );
+    $work_row4_right_url = $resolve_image_url( '_promo_duo_work_row4_right', $lipblush_image_url );
+    $work_row5_square_url = $resolve_image_url( '_promo_duo_work_row5_square', $lipblush_image_url );
+    $work_row6_portrait_url = $resolve_image_url( '_promo_duo_work_row6_portrait', $lipblush_image_url );
     ?>
 
     <style>
@@ -233,6 +242,66 @@ while ( have_posts() ) :
 
         .promo-work-badge-right {
             right: 8px;
+        }
+
+        .promo-work-lines {
+            display: grid;
+            gap: 14px;
+            width: 100%;
+            margin: 0;
+        }
+
+        .promo-work-line {
+            display: flex;
+            gap: 14px;
+            width: 100%;
+            margin: 0;
+        }
+
+        .promo-work-line.two-portrait .promo-work-line-shot {
+            flex: 1 1 0;
+            min-width: 0;
+            aspect-ratio: 152 / 202;
+        }
+
+        .promo-work-line.one-landscape .promo-work-line-shot {
+            width: 100%;
+            aspect-ratio: 202 / 152;
+        }
+
+        .promo-work-line.one-square {
+            justify-content: center;
+        }
+
+        .promo-work-line.one-square .promo-work-line-shot {
+            width: min(50%, 320px);
+            aspect-ratio: 1 / 1;
+        }
+
+        .promo-work-line.one-portrait {
+            justify-content: center;
+        }
+
+        .promo-work-line.one-portrait .promo-work-line-shot {
+            width: min(50%, 280px);
+            aspect-ratio: 152 / 202;
+        }
+
+        .promo-work-line-shot {
+            position: relative;
+            margin: 0;
+            border-radius: 14px;
+            overflow: hidden;
+            border: 1px solid rgba(123, 57, 26, 0.28);
+            box-shadow: 0 10px 22px rgba(34, 20, 20, 0.12);
+            background: linear-gradient(145deg, #e5c1b2, #c9927b);
+        }
+
+        .promo-work-line-shot img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
         }
 
         .promo-duo-bands {
@@ -484,6 +553,15 @@ while ( have_posts() ) :
             .promo-work-gallery {
                 gap: 10px;
             }
+
+            .promo-work-line {
+                gap: 10px;
+            }
+
+            .promo-work-line.one-square .promo-work-line-shot,
+            .promo-work-line.one-portrait .promo-work-line-shot {
+                width: 100%;
+            }
         }
     </style>
 
@@ -583,6 +661,65 @@ while ( have_posts() ) :
                             <img src="<?php echo esc_url( $lipblush_after_url ); ?>" alt="Lipblush après" loading="lazy">
                         <?php endif; ?>
                     </figure>
+                </div>
+                <div class="promo-work-lines" aria-label="Galerie lipblush complémentaire">
+                    <div class="promo-work-line two-portrait">
+                        <figure class="promo-work-line-shot">
+                            <?php if ( $work_row1_left_url ) : ?>
+                                <img src="<?php echo esc_url( $work_row1_left_url ); ?>" alt="Lipblush résultat portrait 1" loading="lazy">
+                            <?php endif; ?>
+                        </figure>
+                        <figure class="promo-work-line-shot">
+                            <?php if ( $work_row1_right_url ) : ?>
+                                <img src="<?php echo esc_url( $work_row1_right_url ); ?>" alt="Lipblush résultat portrait 2" loading="lazy">
+                            <?php endif; ?>
+                        </figure>
+                    </div>
+                    <div class="promo-work-line one-landscape">
+                        <figure class="promo-work-line-shot">
+                            <?php if ( $work_row2_wide_url ) : ?>
+                                <img src="<?php echo esc_url( $work_row2_wide_url ); ?>" alt="Lipblush résultat paysage" loading="lazy">
+                            <?php endif; ?>
+                        </figure>
+                    </div>
+                    <div class="promo-work-line two-portrait">
+                        <figure class="promo-work-line-shot">
+                            <?php if ( $work_row3_left_url ) : ?>
+                                <img src="<?php echo esc_url( $work_row3_left_url ); ?>" alt="Lipblush résultat portrait 3" loading="lazy">
+                            <?php endif; ?>
+                        </figure>
+                        <figure class="promo-work-line-shot">
+                            <?php if ( $work_row3_right_url ) : ?>
+                                <img src="<?php echo esc_url( $work_row3_right_url ); ?>" alt="Lipblush résultat portrait 4" loading="lazy">
+                            <?php endif; ?>
+                        </figure>
+                    </div>
+                    <div class="promo-work-line two-portrait">
+                        <figure class="promo-work-line-shot">
+                            <?php if ( $work_row4_left_url ) : ?>
+                                <img src="<?php echo esc_url( $work_row4_left_url ); ?>" alt="Lipblush résultat portrait 5" loading="lazy">
+                            <?php endif; ?>
+                        </figure>
+                        <figure class="promo-work-line-shot">
+                            <?php if ( $work_row4_right_url ) : ?>
+                                <img src="<?php echo esc_url( $work_row4_right_url ); ?>" alt="Lipblush résultat portrait 6" loading="lazy">
+                            <?php endif; ?>
+                        </figure>
+                    </div>
+                    <div class="promo-work-line one-square">
+                        <figure class="promo-work-line-shot">
+                            <?php if ( $work_row5_square_url ) : ?>
+                                <img src="<?php echo esc_url( $work_row5_square_url ); ?>" alt="Lipblush résultat carré" loading="lazy">
+                            <?php endif; ?>
+                        </figure>
+                    </div>
+                    <div class="promo-work-line one-portrait">
+                        <figure class="promo-work-line-shot">
+                            <?php if ( $work_row6_portrait_url ) : ?>
+                                <img src="<?php echo esc_url( $work_row6_portrait_url ); ?>" alt="Lipblush résultat portrait final" loading="lazy">
+                            <?php endif; ?>
+                        </figure>
+                    </div>
                 </div>
             </section>
         </div>
