@@ -180,6 +180,17 @@ while ( have_posts() ) :
 
         .promo-detail-card-body {
             padding: clamp(20px, 3vw, 32px);
+            position: relative;
+        }
+
+        .promo-detail-card:first-child .promo-detail-card-body::after {
+            content: "";
+            position: absolute;
+            top: 12px;
+            bottom: 12px;
+            right: 0;
+            width: 1px;
+            background: var(--promo-border);
         }
 
         .promo-detail-card-text {
@@ -332,6 +343,10 @@ while ( have_posts() ) :
 
             .promo-detail-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .promo-detail-card:first-child .promo-detail-card-body::after {
+                display: none;
             }
         }
     </style>
