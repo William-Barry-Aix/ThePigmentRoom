@@ -186,7 +186,7 @@ while ( have_posts() ) :
 
         .promo-work-gallery {
             display: flex;
-            justify-content: center;
+            width: 100%;
             gap: 14px;
             margin: 0;
         }
@@ -194,8 +194,9 @@ while ( have_posts() ) :
         .promo-work-shot {
             position: relative;
             margin: 0;
-            width: 152px;
-            height: 202px;
+            flex: 1 1 0;
+            min-width: 0;
+            aspect-ratio: 152 / 202;
             border-radius: 14px;
             overflow: hidden;
             border: 1px solid rgba(123, 57, 26, 0.28);
@@ -204,8 +205,8 @@ while ( have_posts() ) :
         }
 
         .promo-work-shot img {
-            width: 152px;
-            height: 202px;
+            width: 100%;
+            height: 100%;
             object-fit: cover;
             display: block;
         }
@@ -478,6 +479,10 @@ while ( have_posts() ) :
 
             .promo-work-row-separator {
                 flex-basis: 100%;
+            }
+
+            .promo-work-gallery {
+                gap: 10px;
             }
         }
     </style>
