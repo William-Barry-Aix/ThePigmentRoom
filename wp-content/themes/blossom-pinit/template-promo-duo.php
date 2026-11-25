@@ -49,6 +49,7 @@ while ( have_posts() ) :
     $work_row5_square_url = $resolve_image_url( '_promo_duo_work_row5_square', $lipblush_image_url );
     $work_row6_portrait_url = $resolve_image_url( '_promo_duo_work_row6_portrait', $lipblush_image_url );
     $about_image_url = $resolve_image_url( '_promo_duo_about_image', $hero_image_url );
+    $about_secondary_image_url = $resolve_image_url( '_promo_duo_about_secondary_image', $about_image_url );
     ?>
 
     <style>
@@ -378,6 +379,22 @@ while ( have_posts() ) :
             font-size: clamp(1rem, 2vw, 1.15rem);
         }
 
+        .promo-about-content-reverse {
+            grid-template-columns: 1fr 189px;
+        }
+
+        .promo-about-photo-landscape {
+            width: 189px;
+            height: 168px;
+            justify-self: end;
+            aspect-ratio: auto;
+        }
+
+        .promo-about-photo-landscape img {
+            width: 189px;
+            height: 168px;
+        }
+
         .promo-duo-bands {
             border-radius: 22px;
             overflow: hidden;
@@ -640,6 +657,16 @@ while ( have_posts() ) :
             .promo-about-content {
                 gap: 10px;
             }
+
+            .promo-about-content-reverse {
+                grid-template-columns: 1fr 140px;
+            }
+
+            .promo-about-photo-landscape,
+            .promo-about-photo-landscape img {
+                width: 140px;
+                height: 124px;
+            }
         }
     </style>
 
@@ -813,6 +840,14 @@ while ( have_posts() ) :
                         <?php endif; ?>
                     </figure>
                     <p class="promo-about-text">Moi c’est Lisa, passionnée par la beauté, j’aime aider les femmes à se sentir bien dans leur peau. À travers le Lip Blush et le Lash Lift, mon but est de mettre en valeur votre beauté naturelle.</p>
+                </div>
+                <div class="promo-about-content promo-about-content-reverse">
+                    <p class="promo-about-text">J’accorde beaucoup d’importance à chaque détail pour vous offrir un résultat qui vous ressemble et dans lequel vous vous sentez bien.</p>
+                    <figure class="promo-about-photo promo-about-photo-landscape">
+                        <?php if ( $about_secondary_image_url ) : ?>
+                            <img src="<?php echo esc_url( $about_secondary_image_url ); ?>" alt="Lisa au travail" loading="lazy">
+                        <?php endif; ?>
+                    </figure>
                 </div>
             </section>
         </div>
