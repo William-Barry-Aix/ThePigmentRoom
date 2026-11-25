@@ -147,6 +147,47 @@ while ( have_posts() ) :
             margin-bottom: 6px;
         }
 
+        .promo-detail-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            border-radius: 22px;
+            overflow: hidden;
+            border: 1px solid var(--promo-border);
+            box-shadow: var(--promo-shadow);
+        }
+
+        .promo-detail-card {
+            margin: 0;
+            padding: clamp(20px, 3vw, 32px);
+            display: grid;
+            gap: 10px;
+        }
+
+        .promo-detail-card-title {
+            margin: 0;
+            font-family: var(--secondary-font);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            font-size: clamp(1.3rem, 2.4vw, 1.9rem);
+            line-height: 1.05;
+        }
+
+        .promo-detail-card-text {
+            margin: 0;
+            line-height: 1.6;
+            font-size: clamp(0.98rem, 1.9vw, 1.12rem);
+        }
+
+        .promo-detail-card-light {
+            background: #fff;
+            color: var(--promo-ink);
+        }
+
+        .promo-detail-card-dark {
+            background: #1c1212;
+            color: #fff;
+        }
+
         .promo-offer {
             position: relative;
             display: grid;
@@ -277,6 +318,10 @@ while ( have_posts() ) :
             .promo-offer.reverse .promo-price-ribbon {
                 left: 10px;
             }
+
+            .promo-detail-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 
@@ -331,6 +376,17 @@ while ( have_posts() ) :
                 <p class="promo-duo-band promo-duo-band-dark">
                     Choisissez les deux et profitez de votre retouche Lip Blush incluse (valeur de 50 $)
                 </p>
+            </section>
+
+            <section class="promo-detail-grid" aria-label="Détails des services">
+                <article class="promo-detail-card promo-detail-card-light">
+                    <h3 class="promo-detail-card-title">Lipblush</h3>
+                    <p class="promo-detail-card-text">Technique de maquillage semi permanent qui rehausse la couleur des lèvres, redéfinit les contours et les rend plus uniformes. Un effet bonne mine sans maquillage quotidien.</p>
+                </article>
+                <article class="promo-detail-card promo-detail-card-dark">
+                    <h3 class="promo-detail-card-title">Corean Lashlift</h3>
+                    <p class="promo-detail-card-text">Rehaussement de cils nouvelle génération plus doux et plus avancé . Il ouvre le regard, recourbe et colore vos cils naturels en profondeur pour un résultat impeccable à chaque matin.</p>
+                </article>
             </section>
         </div>
     </main>
