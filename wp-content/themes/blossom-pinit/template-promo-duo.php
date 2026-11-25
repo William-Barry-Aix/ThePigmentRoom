@@ -158,11 +158,14 @@ while ( have_posts() ) :
 
         .promo-detail-card {
             margin: 0;
-            padding: clamp(20px, 3vw, 32px);
             display: grid;
-            gap: 10px;
-            background: var(--promo-paper);
+            grid-template-rows: auto 1fr;
+            background: transparent;
             color: var(--promo-ink);
+        }
+
+        .promo-detail-card-head {
+            padding: 12px 16px;
         }
 
         .promo-detail-card-title {
@@ -172,9 +175,11 @@ while ( have_posts() ) :
             letter-spacing: 0.08em;
             font-size: clamp(1.3rem, 2.4vw, 1.9rem);
             line-height: 1.05;
-            width: fit-content;
-            padding: 8px 14px;
-            border-radius: 12px;
+            text-align: center;
+        }
+
+        .promo-detail-card-body {
+            padding: clamp(20px, 3vw, 32px);
         }
 
         .promo-detail-card-text {
@@ -186,7 +191,7 @@ while ( have_posts() ) :
         .promo-detail-card-title-light {
             background: #fff;
             color: var(--promo-ink);
-            border: 1px solid var(--promo-border);
+            border-bottom: 1px solid var(--promo-border);
         }
 
         .promo-detail-card-title-dark {
@@ -386,12 +391,20 @@ while ( have_posts() ) :
 
             <section class="promo-detail-grid" aria-label="Détails des services">
                 <article class="promo-detail-card">
-                    <h3 class="promo-detail-card-title promo-detail-card-title-light">Lipblush</h3>
-                    <p class="promo-detail-card-text">Technique de maquillage semi permanent qui rehausse la couleur des lèvres, redéfinit les contours et les rend plus uniformes. Un effet bonne mine sans maquillage quotidien.</p>
+                    <div class="promo-detail-card-head promo-detail-card-title-light">
+                        <h3 class="promo-detail-card-title">Lipblush</h3>
+                    </div>
+                    <div class="promo-detail-card-body">
+                        <p class="promo-detail-card-text">Technique de maquillage semi permanent qui rehausse la couleur des lèvres, redéfinit les contours et les rend plus uniformes. Un effet bonne mine sans maquillage quotidien.</p>
+                    </div>
                 </article>
                 <article class="promo-detail-card">
-                    <h3 class="promo-detail-card-title promo-detail-card-title-dark">Corean Lashlift</h3>
-                    <p class="promo-detail-card-text">Rehaussement de cils nouvelle génération plus doux et plus avancé . Il ouvre le regard, recourbe et colore vos cils naturels en profondeur pour un résultat impeccable à chaque matin.</p>
+                    <div class="promo-detail-card-head promo-detail-card-title-dark">
+                        <h3 class="promo-detail-card-title">Corean Lashlift</h3>
+                    </div>
+                    <div class="promo-detail-card-body">
+                        <p class="promo-detail-card-text">Rehaussement de cils nouvelle génération plus doux et plus avancé . Il ouvre le regard, recourbe et colore vos cils naturels en profondeur pour un résultat impeccable à chaque matin.</p>
+                    </div>
                 </article>
             </section>
         </div>
