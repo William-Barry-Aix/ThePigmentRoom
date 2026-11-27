@@ -77,6 +77,10 @@ while ( have_posts() ) :
             margin: 24px 0 0 !important;
         }
 
+        #content {
+            margin-bottom: 120px;
+        }
+
         .promo-duo-wrap {
             width: min(1080px, calc(100% - 32px));
             margin: 0 auto;
