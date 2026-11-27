@@ -251,7 +251,7 @@ while ( have_posts() ) :
         }
 
         .promo-work-row-subtext-below {
-            margin: -15px 0 0;
+            margin: -25px 0 0;
             width: 100%;
             text-align: left;
         }
@@ -268,7 +268,7 @@ while ( have_posts() ) :
             line-clamp: 2;
             overflow: hidden;
             max-width: 24ch;
-            font-size: clamp(0.68rem, 1.15vw, 0.78rem);
+            font-size: clamp(0.62rem, 1.02vw, 0.72rem);
             letter-spacing: 0.01em;
             text-transform: uppercase;
             text-align: left;
