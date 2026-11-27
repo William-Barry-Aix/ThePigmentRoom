@@ -483,6 +483,7 @@ while ( have_posts() ) :
 
         .promo-footer-insert {
             margin: 0;
+            background: var(--promo-bg);
         }
 
         .promo-duo-bands {
