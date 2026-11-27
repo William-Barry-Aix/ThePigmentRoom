@@ -221,12 +221,14 @@ while ( have_posts() ) :
         .promo-work-row-lash {
             align-items: flex-start;
             gap: 16px;
+            margin: 10px 0 12px;
             --lash-title-height: clamp(1.4rem, 2.4vw, 1.85rem);
         }
 
         .promo-work-row-lip {
             align-items: flex-start;
             gap: 16px;
+            margin: 10px 0 12px;
             --lip-title-height: clamp(1.4rem, 2.4vw, 1.85rem);
         }
 
@@ -450,6 +452,7 @@ while ( have_posts() ) :
             display: inline-flex;
             justify-self: center;
             align-items: center;
+            margin: 16px 0 18px;
             padding: 12px 26px;
             border: 1px solid #7b391a;
             border-radius: 999px;
