@@ -450,6 +450,10 @@ while ( have_posts() ) :
             filter: none;
         }
 
+        .promo-footer-insert {
+            margin: 0;
+        }
+
         .promo-duo-bands {
             border-radius: 22px;
             overflow: hidden;
@@ -916,25 +920,43 @@ while ( have_posts() ) :
                 </div>
             </section>
 
+        </div>
+    </main>
+
+    <div id="promo-footer-insert" class="promo-footer-insert">
+        <div class="promo-duo-wrap">
             <section class="promo-shop-address" aria-label="Adresse du shop">
                 <hr class="promo-shop-address-line" aria-hidden="true">
                 <p class="promo-shop-address-text">467 Rue de Port-Royal Ouest<br>Montreal</p>
                 <hr class="promo-shop-address-line" aria-hidden="true">
             </section>
         </div>
-    </main>
 
-    <section class="promo-full-map-section" aria-label="Carte du shop">
-        <div class="promo-full-map-wrap">
-            <iframe
-                title="The Pigment Room location map"
-                src="<?php echo esc_url( 'https://www.google.com/maps?q=' . rawurlencode( '467 Rue de Port-Royal Ouest, Montreal, QC' ) . '&z=11&output=embed' ); ?>"
-                loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade"
-                allowfullscreen>
-            </iframe>
-        </div>
-    </section>
+        <section class="promo-full-map-section" aria-label="Carte du shop">
+            <div class="promo-full-map-wrap">
+                <iframe
+                    title="The Pigment Room location map"
+                    src="<?php echo esc_url( 'https://www.google.com/maps?q=' . rawurlencode( '467 Rue de Port-Royal Ouest, Montreal, QC' ) . '&z=11&output=embed' ); ?>"
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
+                    allowfullscreen>
+                </iframe>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var footer = document.getElementById('colophon');
+            var promoFooterInsert = document.getElementById('promo-footer-insert');
+
+            if (!footer || !promoFooterInsert || footer.contains(promoFooterInsert)) {
+                return;
+            }
+
+            footer.insertBefore(promoFooterInsert, footer.firstChild);
+        });
+    </script>
 
 <?php
 endwhile;
