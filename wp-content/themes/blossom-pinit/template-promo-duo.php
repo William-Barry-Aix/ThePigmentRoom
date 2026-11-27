@@ -145,7 +145,9 @@ while ( have_posts() ) :
             width: min(220px, 42vw);
             margin: 0 auto;
             border: 0;
-            border-top: 1px solid #7b391a;
+            height: 1px;
+            background: #7b391a;
+            opacity: 0.95;
         }
 
         .promo-work-title,
@@ -160,6 +162,7 @@ while ( have_posts() ) :
             letter-spacing: 0.08em;
             font-size: clamp(1.8rem, 3.8vw, 2.8rem);
             line-height: 1;
+            color: #7b391a;
         }
 
         .promo-work-subtitle {
