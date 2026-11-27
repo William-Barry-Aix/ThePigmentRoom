@@ -770,6 +770,19 @@ while ( have_posts() ) :
                 flex-basis: 100%;
             }
 
+            .promo-work-row-lash {
+                flex-wrap: nowrap;
+                justify-content: flex-start;
+                align-items: flex-start;
+                gap: 8px;
+            }
+
+            .promo-work-row-lash .promo-work-row-separator {
+                flex-basis: auto;
+                min-width: 34px;
+                align-self: center;
+            }
+
             .promo-work-gallery {
                 gap: 10px;
             }
