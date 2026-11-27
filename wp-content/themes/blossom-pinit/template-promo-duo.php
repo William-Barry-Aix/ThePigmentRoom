@@ -142,8 +142,8 @@ while ( have_posts() ) :
         }
 
         .promo-work-divider {
-            width: min(220px, 42vw);
-            margin: 0 auto;
+            width: min(110px, 21vw);
+            margin: 16px auto;
             border: 0;
             height: 1px;
             background: #7b391a;
