@@ -251,7 +251,7 @@ while ( have_posts() ) :
         }
 
         .promo-work-row-subtext-below {
-            margin: -4px 0 0;
+            margin: -9px 0 0;
             width: 100%;
             text-align: left;
         }
