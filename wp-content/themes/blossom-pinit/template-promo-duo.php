@@ -487,7 +487,10 @@ while ( have_posts() ) :
         }
 
         .promo-footer-insert > section {
-            padding: 0;
+            padding-top: 12px;
+            padding-right: 0;
+            padding-bottom: 0;
+            padding-left: 0;
         }
 
         .promo-duo-bands {
