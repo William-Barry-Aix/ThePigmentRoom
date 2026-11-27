@@ -383,6 +383,10 @@ while ( have_posts() ) :
             margin: 0;
         }
 
+        .promo-work-intro > .promo-work-lines:last-of-type {
+            margin-bottom: 14px;
+        }
+
         .promo-work-line {
             display: flex;
             gap: 14px;
