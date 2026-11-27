@@ -244,6 +244,11 @@ while ( have_posts() ) :
             line-height: var(--lash-title-height);
         }
 
+        .promo-work-row-lash .promo-work-row-subtext {
+            align-self: flex-start;
+            line-height: var(--lash-title-height);
+        }
+
         .promo-work-row-lip .promo-work-row-title {
             line-height: var(--lip-title-height);
         }
@@ -1042,10 +1047,8 @@ while ( have_posts() ) :
                     </div>
                 </div>
                 <div class="promo-work-row promo-work-row-lash" aria-label="Sous-section lash lift coren">
-                    <div class="promo-work-row-title-wrap">
-                        <h3 class="promo-work-row-title">Lash lift coren</h3>
-                        <p class="promo-work-row-subtext">+Teinture de cils</p>
-                    </div>
+                    <h3 class="promo-work-row-title">Lash lift coren</h3>
+                    <p class="promo-work-row-subtext">+Teinture de cils</p>
                     <p class="promo-work-row-text">un regard plus ouvert et expressif</p>
                     <span class="promo-work-row-separator" aria-hidden="true"></span>
                 </div>
