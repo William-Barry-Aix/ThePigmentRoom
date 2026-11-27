@@ -286,6 +286,27 @@ while ( have_posts() ) :
             align-self: flex-start;
         }
 
+        .promo-work-row-lash .promo-work-row-separator,
+        .promo-work-row-lip .promo-work-row-separator {
+            position: relative;
+            align-self: stretch;
+            height: auto;
+            background: transparent;
+        }
+
+        .promo-work-row-lash .promo-work-row-separator::before,
+        .promo-work-row-lip .promo-work-row-separator::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 50%;
+            height: 1px;
+            transform: translateY(-50%);
+            background: #7b391a;
+            opacity: 0.95;
+        }
+
         .promo-work-gallery {
             display: flex;
             width: 100%;
@@ -816,13 +837,13 @@ while ( have_posts() ) :
             .promo-work-row-lash .promo-work-row-separator {
                 flex-basis: auto;
                 min-width: 34px;
-                align-self: center;
+                align-self: stretch;
             }
 
             .promo-work-row-lip .promo-work-row-separator {
                 flex-basis: auto;
                 min-width: 34px;
-                align-self: center;
+                align-self: stretch;
             }
 
             .promo-work-gallery {
