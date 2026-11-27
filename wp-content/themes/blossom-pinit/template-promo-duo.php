@@ -57,6 +57,8 @@ while ( have_posts() ) :
     ?>
 
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&display=swap');
+
         .promo-duo-page {
             --promo-bg: #f6eee7;
             --promo-paper: #fff7f0;
@@ -154,7 +156,7 @@ while ( have_posts() ) :
         }
 
         .promo-work-title {
-            font-family: 'Poppins', var(--secondary-font), sans-serif;
+            font-family: 'Poppins', var(--secondary-font), sans-serif !important;
             letter-spacing: 0.08em;
             font-size: clamp(1.8rem, 3.8vw, 2.8rem);
             line-height: 1;
@@ -184,10 +186,15 @@ while ( have_posts() ) :
         .promo-work-row-title {
             margin: 0;
             text-transform: uppercase;
-            font-family: 'Poppins', var(--secondary-font), sans-serif;
+            font-family: 'Poppins', var(--secondary-font), sans-serif !important;
             font-size: clamp(1.15rem, 2.3vw, 1.5rem);
             letter-spacing: 0.06em;
             white-space: nowrap;
+        }
+
+        .promo-work-intro h2,
+        .promo-work-intro h3 {
+            font-family: 'Poppins', var(--secondary-font), sans-serif !important;
         }
 
         .promo-work-row-text {
