@@ -154,7 +154,7 @@ while ( have_posts() ) :
         }
 
         .promo-work-title {
-            font-family: var(--secondary-font);
+            font-family: 'Poppins', var(--secondary-font), sans-serif;
             letter-spacing: 0.08em;
             font-size: clamp(1.8rem, 3.8vw, 2.8rem);
             line-height: 1;
@@ -184,7 +184,7 @@ while ( have_posts() ) :
         .promo-work-row-title {
             margin: 0;
             text-transform: uppercase;
-            font-family: var(--secondary-font);
+            font-family: 'Poppins', var(--secondary-font), sans-serif;
             font-size: clamp(1.15rem, 2.3vw, 1.5rem);
             letter-spacing: 0.06em;
             white-space: nowrap;
