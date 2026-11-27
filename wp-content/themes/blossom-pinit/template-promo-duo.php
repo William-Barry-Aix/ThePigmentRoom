@@ -246,8 +246,8 @@ while ( have_posts() ) :
             line-clamp: 2;
             overflow: hidden;
             max-width: 24ch;
-            font-size: clamp(0.82rem, 1.5vw, 0.94rem);
-            letter-spacing: 0.02em;
+            font-size: clamp(0.74rem, 1.28vw, 0.84rem);
+            letter-spacing: 0.01em;
             text-transform: uppercase;
             text-align: left;
             margin-top: 0;
