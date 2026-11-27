@@ -1046,7 +1046,7 @@ while ( have_posts() ) :
                         <h3 class="promo-work-row-title">Lash lift coren</h3>
                         <p class="promo-work-row-subtext">+Teinture de cils</p>
                     </div>
-                    <p class="promo-work-row-text">un regard plus ouvert</p>
+                    <p class="promo-work-row-text">un regard plus ouvert et expressif</p>
                     <span class="promo-work-row-separator" aria-hidden="true"></span>
                 </div>
                 <div class="promo-work-lines" aria-label="Lash lift coren avant après">
