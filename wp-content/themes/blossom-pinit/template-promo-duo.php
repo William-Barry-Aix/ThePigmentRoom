@@ -221,14 +221,14 @@ while ( have_posts() ) :
         .promo-work-row-lash {
             align-items: flex-start;
             gap: 16px;
-            margin: 10px 0 12px;
+            margin: 10px 0 0;
             --lash-title-height: clamp(1.4rem, 2.4vw, 1.85rem);
         }
 
         .promo-work-row-lip {
             align-items: flex-start;
             gap: 16px;
-            margin: 10px 0 12px;
+            margin: 10px 0 0;
             --lip-title-height: clamp(1.4rem, 2.4vw, 1.85rem);
         }
 
@@ -326,6 +326,12 @@ while ( have_posts() ) :
             min-width: 0;
             gap: 14px;
             margin: 0;
+        }
+
+        .promo-work-row + .promo-work-gallery,
+        .promo-work-row + .promo-work-lines {
+            margin-top: 12px;
+            margin-bottom: 12px;
         }
 
         .promo-work-shot {
