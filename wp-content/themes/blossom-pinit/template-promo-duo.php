@@ -262,11 +262,10 @@ while ( have_posts() ) :
 
         .promo-work-row-lash .promo-work-row-text {
             white-space: normal;
-            display: -webkit-box;
-            -webkit-box-orient: vertical;
-            -webkit-line-clamp: 2;
-            line-clamp: 2;
-            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            overflow: visible;
             max-width: 24ch;
             font-size: clamp(0.5rem, 0.82vw, 0.62rem);
             letter-spacing: 0.01em;
@@ -274,8 +273,8 @@ while ( have_posts() ) :
             text-align: left;
             margin-top: 0;
             margin-bottom: 0;
-            height: var(--lash-title-height);
-            line-height: calc(var(--lash-title-height) / 2);
+            min-height: var(--lash-title-height);
+            line-height: 1.15;
             align-self: flex-start;
         }
 
