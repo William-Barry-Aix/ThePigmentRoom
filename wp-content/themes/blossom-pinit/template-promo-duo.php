@@ -48,6 +48,10 @@ while ( have_posts() ) :
     $work_row4_right_url = $resolve_image_url( '_promo_duo_work_row4_right', $lipblush_image_url );
     $work_row5_square_url = $resolve_image_url( '_promo_duo_work_row5_square', $lipblush_image_url );
     $work_row6_portrait_url = $resolve_image_url( '_promo_duo_work_row6_portrait', $lipblush_image_url );
+    $lashlift_before_1_url = $resolve_image_url( '_promo_duo_lashlift_before_1_image', $lashlift_image_url );
+    $lashlift_after_1_url  = $resolve_image_url( '_promo_duo_lashlift_after_1_image', $lashlift_image_url );
+    $lashlift_before_2_url = $resolve_image_url( '_promo_duo_lashlift_before_2_image', $lashlift_image_url );
+    $lashlift_after_2_url  = $resolve_image_url( '_promo_duo_lashlift_after_2_image', $lashlift_image_url );
     $about_image_url = $resolve_image_url( '_promo_duo_about_image', $hero_image_url );
     $about_secondary_image_url = $resolve_image_url( '_promo_duo_about_secondary_image', $about_image_url );
     ?>
@@ -201,6 +205,27 @@ while ( have_posts() ) :
             opacity: 0.95;
         }
 
+        .promo-work-row-lash {
+            align-items: flex-start;
+            gap: 16px;
+        }
+
+        .promo-work-row-title-wrap {
+            display: grid;
+            gap: 2px;
+            justify-items: start;
+            min-width: max-content;
+        }
+
+        .promo-work-row-subtext {
+            margin: 0;
+            font-size: clamp(0.82rem, 1.7vw, 0.96rem);
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
         .promo-work-gallery {
             display: flex;
             width: 100%;
@@ -278,6 +303,12 @@ while ( have_posts() ) :
             flex: 1 1 0;
             min-width: 0;
             aspect-ratio: 152 / 202;
+        }
+
+        .promo-work-line.two-landscape-small .promo-work-line-shot {
+            flex: 1 1 0;
+            min-width: 0;
+            aspect-ratio: 157 / 130;
         }
 
         .promo-work-line.one-landscape .promo-work-line-shot {
@@ -891,6 +922,44 @@ while ( have_posts() ) :
                         <figure class="promo-work-line-shot">
                             <?php if ( $work_row6_portrait_url ) : ?>
                                 <img src="<?php echo esc_url( $work_row6_portrait_url ); ?>" alt="Lipblush résultat portrait final" loading="lazy">
+                            <?php endif; ?>
+                        </figure>
+                    </div>
+                </div>
+                <div class="promo-work-row promo-work-row-lash" aria-label="Sous-section lash lift coren">
+                    <div class="promo-work-row-title-wrap">
+                        <h3 class="promo-work-row-title">Lash lift coren</h3>
+                        <p class="promo-work-row-subtext">+Teinture de cils</p>
+                    </div>
+                    <p class="promo-work-row-text">un regard plus ouvert et plus expressif</p>
+                    <span class="promo-work-row-separator" aria-hidden="true"></span>
+                </div>
+                <div class="promo-work-lines" aria-label="Lash lift coren avant après">
+                    <div class="promo-work-line two-landscape-small">
+                        <figure class="promo-work-line-shot">
+                            <span class="promo-work-badge promo-work-badge-left">Avant</span>
+                            <?php if ( $lashlift_before_1_url ) : ?>
+                                <img src="<?php echo esc_url( $lashlift_before_1_url ); ?>" alt="Lash lift coren avant 1" loading="lazy">
+                            <?php endif; ?>
+                        </figure>
+                        <figure class="promo-work-line-shot">
+                            <span class="promo-work-badge promo-work-badge-right">Après</span>
+                            <?php if ( $lashlift_after_1_url ) : ?>
+                                <img src="<?php echo esc_url( $lashlift_after_1_url ); ?>" alt="Lash lift coren après 1" loading="lazy">
+                            <?php endif; ?>
+                        </figure>
+                    </div>
+                    <div class="promo-work-line two-landscape-small">
+                        <figure class="promo-work-line-shot">
+                            <span class="promo-work-badge promo-work-badge-left">Avant</span>
+                            <?php if ( $lashlift_before_2_url ) : ?>
+                                <img src="<?php echo esc_url( $lashlift_before_2_url ); ?>" alt="Lash lift coren avant 2" loading="lazy">
+                            <?php endif; ?>
+                        </figure>
+                        <figure class="promo-work-line-shot">
+                            <span class="promo-work-badge promo-work-badge-right">Après</span>
+                            <?php if ( $lashlift_after_2_url ) : ?>
+                                <img src="<?php echo esc_url( $lashlift_after_2_url ); ?>" alt="Lash lift coren après 2" loading="lazy">
                             <?php endif; ?>
                         </figure>
                     </div>
