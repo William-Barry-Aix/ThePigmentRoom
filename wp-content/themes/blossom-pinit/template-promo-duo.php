@@ -989,6 +989,28 @@ while ( have_posts() ) :
                 </div>
             </section>
 
+            <section class="promo-work-intro" aria-label="Section le studio">
+                <hr class="promo-work-divider" aria-hidden="true">
+                <h2 class="promo-work-title">LE STUDIO</h2>
+                <hr class="promo-work-divider" aria-hidden="true">
+                <div class="promo-about-content promo-about-content-reverse">
+                    <p class="promo-about-text">Espace partagé entre artistes en maquillage permanent, Je vous reçois dans un local style loft du quartier industriel d'austhic</p>
+                    <figure class="promo-about-photo">
+                        <?php if ( $about_image_url ) : ?>
+                            <img src="<?php echo esc_url( $about_image_url ); ?>" alt="Le studio" loading="lazy">
+                        <?php endif; ?>
+                    </figure>
+                </div>
+                <div class="promo-about-content">
+                    <figure class="promo-about-photo promo-about-photo-landscape">
+                        <?php if ( $about_secondary_image_url ) : ?>
+                            <img src="<?php echo esc_url( $about_secondary_image_url ); ?>" alt="Le studio intérieur" loading="lazy">
+                        <?php endif; ?>
+                    </figure>
+                    <p class="promo-about-text">Murs de brique, haut plafonds, sofa. Ici c'est un safe space où vous pouvez communiquer avec aise ce que vous voulez et ce que vous je voulez pas.</p>
+                </div>
+            </section>
+
         </div>
     </main>
 
