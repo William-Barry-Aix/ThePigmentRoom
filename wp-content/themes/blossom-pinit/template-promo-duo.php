@@ -384,7 +384,7 @@ while ( have_posts() ) :
         }
 
         .promo-work-intro > .promo-work-lines:last-of-type {
-            margin-bottom: 14px;
+            margin-bottom: 28px;
         }
 
         .promo-work-line {
