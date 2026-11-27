@@ -248,6 +248,8 @@ while ( have_posts() ) :
             max-width: 24ch;
             font-size: clamp(0.82rem, 1.5vw, 0.94rem);
             letter-spacing: 0.02em;
+            text-transform: uppercase;
+            text-align: left;
             margin-top: 0;
             margin-bottom: 0;
             height: var(--lash-title-height);
