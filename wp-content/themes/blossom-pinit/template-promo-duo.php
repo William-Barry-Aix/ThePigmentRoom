@@ -1052,24 +1052,24 @@ while ( have_posts() ) :
                         </figure>
                     </div>
                 </div>
-                <div class="promo-work-row promo-work-row-lash" aria-label="Sous-section lash lift coren">
-                    <h3 class="promo-work-row-title">Lash lift coren</h3>
+                <div class="promo-work-row promo-work-row-lash" aria-label="Sous-section lash lift coréen">
+                    <h3 class="promo-work-row-title">Lash lift coréen</h3>
                     <p class="promo-work-row-text">un regard plus ouvert et expressif</p>
                     <span class="promo-work-row-separator" aria-hidden="true"></span>
                 </div>
                 <p class="promo-work-row-subtext promo-work-row-subtext-below">+Teinture de cils</p>
-                <div class="promo-work-lines" aria-label="Lash lift coren avant après">
+                <div class="promo-work-lines" aria-label="Lash lift coréen avant après">
                     <div class="promo-work-line two-landscape-small">
                         <figure class="promo-work-line-shot">
                             <span class="promo-work-badge promo-work-badge-left">Avant</span>
                             <?php if ( $lashlift_before_1_url ) : ?>
-                                <img src="<?php echo esc_url( $lashlift_before_1_url ); ?>" alt="Lash lift coren avant 1" loading="lazy">
+                                <img src="<?php echo esc_url( $lashlift_before_1_url ); ?>" alt="Lash lift coréen avant 1" loading="lazy">
                             <?php endif; ?>
                         </figure>
                         <figure class="promo-work-line-shot">
                             <span class="promo-work-badge promo-work-badge-right">Après</span>
                             <?php if ( $lashlift_after_1_url ) : ?>
-                                <img src="<?php echo esc_url( $lashlift_after_1_url ); ?>" alt="Lash lift coren après 1" loading="lazy">
+                                <img src="<?php echo esc_url( $lashlift_after_1_url ); ?>" alt="Lash lift coréen après 1" loading="lazy">
                             <?php endif; ?>
                         </figure>
                     </div>
@@ -1077,13 +1077,13 @@ while ( have_posts() ) :
                         <figure class="promo-work-line-shot">
                             <span class="promo-work-badge promo-work-badge-left">Avant</span>
                             <?php if ( $lashlift_before_2_url ) : ?>
-                                <img src="<?php echo esc_url( $lashlift_before_2_url ); ?>" alt="Lash lift coren avant 2" loading="lazy">
+                                <img src="<?php echo esc_url( $lashlift_before_2_url ); ?>" alt="Lash lift coréen avant 2" loading="lazy">
                             <?php endif; ?>
                         </figure>
                         <figure class="promo-work-line-shot">
                             <span class="promo-work-badge promo-work-badge-right">Après</span>
                             <?php if ( $lashlift_after_2_url ) : ?>
-                                <img src="<?php echo esc_url( $lashlift_after_2_url ); ?>" alt="Lash lift coren après 2" loading="lazy">
+                                <img src="<?php echo esc_url( $lashlift_after_2_url ); ?>" alt="Lash lift coréen après 2" loading="lazy">
                             <?php endif; ?>
                         </figure>
                     </div>
