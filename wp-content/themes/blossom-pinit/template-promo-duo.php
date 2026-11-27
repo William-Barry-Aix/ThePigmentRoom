@@ -225,7 +225,7 @@ while ( have_posts() ) :
         .promo-work-row-lash {
             align-items: flex-start;
             gap: 16px;
-            margin: 10px 0 0;
+            margin: 36px 0 0;
             --lash-title-height: clamp(1.4rem, 2.4vw, 1.85rem);
         }
 
