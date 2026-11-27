@@ -726,6 +726,20 @@ while ( have_posts() ) :
             background: linear-gradient(145deg, #b26f5c, #6f3a2f);
         }
 
+        .promo-offer-lipblush .promo-media {
+            width: 100%;
+            min-height: 0;
+            aspect-ratio: 180 / 120;
+            align-self: start;
+        }
+
+        .promo-offer-lashlift .promo-media {
+            width: 100%;
+            min-height: 0;
+            aspect-ratio: 180 / 120;
+            align-self: start;
+        }
+
         .promo-media img {
             width: 100%;
             height: 100%;
@@ -930,7 +944,7 @@ while ( have_posts() ) :
 
             <p class="promo-kicker">JUSTE À TEMPS POUR LES FÊTES</p>
 
-            <section class="promo-offer" aria-label="Offre Lipblush">
+            <section class="promo-offer promo-offer-lipblush" aria-label="Offre Lipblush">
                 <div class="promo-media">
                     <?php if ( $lipblush_image_url ) : ?>
                         <img src="<?php echo esc_url( $lipblush_image_url ); ?>" alt="Lipblush" loading="lazy">
@@ -946,7 +960,7 @@ while ( have_posts() ) :
                 </p>
             </section>
 
-            <section class="promo-offer reverse" aria-label="Offre Lash lift coréen">
+            <section class="promo-offer promo-offer-lashlift reverse" aria-label="Offre Lash lift coréen">
                 <div class="promo-media">
                     <?php if ( $lashlift_image_url ) : ?>
                         <img src="<?php echo esc_url( $lashlift_image_url ); ?>" alt="Lash lift coréen" loading="lazy">
