@@ -169,6 +169,7 @@ while ( have_posts() ) :
             font-size: clamp(1rem, 2.1vw, 1.25rem);
             letter-spacing: 0.18em;
             font-weight: 700;
+            color: #4b1a06;
         }
 
         .promo-work-tagline {
@@ -176,6 +177,7 @@ while ( have_posts() ) :
             letter-spacing: 0.13em;
             font-weight: 600;
             opacity: 0.9;
+            color: #4b1a06;
         }
 
         .promo-work-row {
@@ -193,6 +195,7 @@ while ( have_posts() ) :
             font-size: clamp(1.15rem, 2.3vw, 1.5rem);
             letter-spacing: 0.06em;
             white-space: nowrap;
+            color: #4b1a06;
         }
 
         .promo-work-intro h2,
