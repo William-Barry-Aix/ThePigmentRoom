@@ -342,7 +342,7 @@ while ( have_posts() ) :
         }
 
         .promo-work-row + .promo-work-lines {
-            margin-bottom: 0;
+            margin-bottom: 12px;
         }
 
         .promo-work-shot {
