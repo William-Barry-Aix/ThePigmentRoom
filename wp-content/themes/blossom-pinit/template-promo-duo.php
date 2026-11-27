@@ -218,6 +218,12 @@ while ( have_posts() ) :
             --lash-title-height: clamp(1.4rem, 2.4vw, 1.85rem);
         }
 
+        .promo-work-row-lip {
+            align-items: flex-start;
+            gap: 16px;
+            --lip-title-height: clamp(1.4rem, 2.4vw, 1.85rem);
+        }
+
         .promo-work-row-title-wrap {
             display: grid;
             gap: 2px;
@@ -238,6 +244,10 @@ while ( have_posts() ) :
             line-height: var(--lash-title-height);
         }
 
+        .promo-work-row-lip .promo-work-row-title {
+            line-height: var(--lip-title-height);
+        }
+
         .promo-work-row-lash .promo-work-row-text {
             white-space: normal;
             display: -webkit-box;
@@ -254,6 +264,25 @@ while ( have_posts() ) :
             margin-bottom: 0;
             height: var(--lash-title-height);
             line-height: calc(var(--lash-title-height) / 2);
+            align-self: flex-start;
+        }
+
+        .promo-work-row-lip .promo-work-row-text {
+            white-space: normal;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+            line-clamp: 2;
+            overflow: hidden;
+            max-width: 24ch;
+            font-size: clamp(0.74rem, 1.28vw, 0.84rem);
+            letter-spacing: 0.01em;
+            text-transform: uppercase;
+            text-align: left;
+            margin-top: 0;
+            margin-bottom: 0;
+            height: var(--lip-title-height);
+            line-height: calc(var(--lip-title-height) / 2);
             align-self: flex-start;
         }
 
@@ -777,7 +806,20 @@ while ( have_posts() ) :
                 gap: 8px;
             }
 
+            .promo-work-row-lip {
+                flex-wrap: nowrap;
+                justify-content: flex-start;
+                align-items: flex-start;
+                gap: 8px;
+            }
+
             .promo-work-row-lash .promo-work-row-separator {
+                flex-basis: auto;
+                min-width: 34px;
+                align-self: center;
+            }
+
+            .promo-work-row-lip .promo-work-row-separator {
                 flex-basis: auto;
                 min-width: 34px;
                 align-self: center;
@@ -900,9 +942,9 @@ while ( have_posts() ) :
                 <p class="promo-work-subtitle">ET QUELQUES AVANT/APRÈS</p>
                 <p class="promo-work-tagline">DES RÉSULTATS NATURELS, QUI VOUS RESSEMBLENT</p>
                 <hr class="promo-work-divider" aria-hidden="true">
-                <div class="promo-work-row" aria-label="Sous-section lipblush">
+                <div class="promo-work-row promo-work-row-lip" aria-label="Sous-section lipblush">
                     <h3 class="promo-work-row-title">lipblush</h3>
-                    <p class="promo-work-row-text">des lèvres sublimées au naturel</p>
+                    <p class="promo-work-row-text">des lèvres sublimées</p>
                     <span class="promo-work-row-separator" aria-hidden="true"></span>
                 </div>
                 <div class="promo-work-gallery" aria-label="Lipblush avant après">
@@ -983,7 +1025,7 @@ while ( have_posts() ) :
                         <h3 class="promo-work-row-title">Lash lift coren</h3>
                         <p class="promo-work-row-subtext">+Teinture de cils</p>
                     </div>
-                    <p class="promo-work-row-text">un regard plus ouvert et plus expressif</p>
+                    <p class="promo-work-row-text">un regard plus ouvert</p>
                     <span class="promo-work-row-separator" aria-hidden="true"></span>
                 </div>
                 <div class="promo-work-lines" aria-label="Lash lift coren avant après">
