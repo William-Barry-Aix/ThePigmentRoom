@@ -162,7 +162,7 @@ while ( have_posts() ) :
             letter-spacing: 0.08em;
             font-size: clamp(1.8rem, 3.8vw, 2.8rem);
             line-height: 1;
-            color: #7b391a;
+            color: #4b1a06;
         }
 
         .promo-work-subtitle {
