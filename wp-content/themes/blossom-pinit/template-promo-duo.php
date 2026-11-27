@@ -335,7 +335,14 @@ while ( have_posts() ) :
         .promo-work-row + .promo-work-gallery,
         .promo-work-row + .promo-work-lines {
             margin-top: 12px;
+        }
+
+        .promo-work-row + .promo-work-gallery {
             margin-bottom: 12px;
+        }
+
+        .promo-work-row + .promo-work-lines {
+            margin-bottom: 0;
         }
 
         .promo-work-shot {
