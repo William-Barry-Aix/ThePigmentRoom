@@ -285,7 +285,7 @@ while ( have_posts() ) :
             justify-content: center;
             overflow: visible;
             max-width: 24ch;
-            font-size: clamp(0.74rem, 1.28vw, 0.84rem);
+            font-size: clamp(0.5rem, 0.82vw, 0.62rem);
             letter-spacing: 0.01em;
             text-transform: uppercase;
             text-align: left;
