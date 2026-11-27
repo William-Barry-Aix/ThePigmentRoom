@@ -72,7 +72,7 @@ while ( have_posts() ) :
         }
 
         #colophon {
-            margin: 0 !important;
+            margin: 24px 0 0 !important;
         }
 
         .promo-duo-wrap {
@@ -460,7 +460,7 @@ while ( have_posts() ) :
             max-width: 100vw;
             margin-left: calc(50% - 50vw);
             margin-right: calc(50% - 50vw);
-            padding-top: 24px;
+            padding-top: 0;
             overflow: hidden;
         }
 
@@ -484,6 +484,10 @@ while ( have_posts() ) :
         .promo-footer-insert {
             margin: 0;
             background: var(--promo-bg, #f6eee7);
+        }
+
+        .promo-footer-insert > section {
+            padding: 0;
         }
 
         .promo-duo-bands {
@@ -762,7 +766,7 @@ while ( have_posts() ) :
             }
 
             .promo-full-map-section {
-                padding-top: 20px;
+                padding-top: 0;
             }
 
             .promo-full-map-wrap iframe {
