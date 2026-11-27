@@ -965,7 +965,7 @@ while ( have_posts() ) :
                 <hr class="promo-work-divider" aria-hidden="true">
                 <div class="promo-work-row promo-work-row-lip" aria-label="Sous-section lipblush">
                     <h3 class="promo-work-row-title">lipblush</h3>
-                    <p class="promo-work-row-text">des lèvres sublimées</p>
+                    <p class="promo-work-row-text">des lèvres sublimées au naturel</p>
                     <span class="promo-work-row-separator" aria-hidden="true"></span>
                 </div>
                 <div class="promo-work-gallery" aria-label="Lipblush avant après">
