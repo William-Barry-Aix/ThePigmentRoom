@@ -215,6 +215,7 @@ while ( have_posts() ) :
         .promo-work-row-lash {
             align-items: flex-start;
             gap: 16px;
+            --lash-title-height: clamp(1.4rem, 2.4vw, 1.85rem);
         }
 
         .promo-work-row-title-wrap {
@@ -231,6 +232,25 @@ while ( have_posts() ) :
             text-transform: uppercase;
             font-weight: 600;
             white-space: nowrap;
+        }
+
+        .promo-work-row-lash .promo-work-row-title {
+            line-height: var(--lash-title-height);
+        }
+
+        .promo-work-row-lash .promo-work-row-text {
+            white-space: normal;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+            line-clamp: 2;
+            overflow: hidden;
+            max-width: 24ch;
+            margin-top: 0;
+            margin-bottom: 0;
+            height: var(--lash-title-height);
+            line-height: calc(var(--lash-title-height) / 2);
+            align-self: flex-start;
         }
 
         .promo-work-gallery {
