@@ -830,7 +830,7 @@ while ( have_posts() ) :
             padding: 12px 20px;
             position: absolute;
             right: -18px;
-            bottom: -35px;
+            bottom: -40px;
             z-index: 3;
         }
 
