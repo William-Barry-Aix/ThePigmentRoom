@@ -890,8 +890,8 @@ while ( have_posts() ) :
             }
 
             .promo-price-ribbon {
-                width: min(78vw, 340px);
-                max-width: min(78vw, 340px);
+                width: min(62vw, 260px);
+                max-width: min(62vw, 260px);
                 padding: 10px 18px;
                 justify-content: flex-start;
                 gap: 10px;
