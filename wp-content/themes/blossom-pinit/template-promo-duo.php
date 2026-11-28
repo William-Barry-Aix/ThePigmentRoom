@@ -890,8 +890,10 @@ while ( have_posts() ) :
             }
 
             .promo-price-ribbon {
-                max-width: min(92vw, 420px);
-                padding: 10px 14px;
+                width: min(92vw, 430px);
+                max-width: min(92vw, 430px);
+                padding: 10px 24px 10px 18px;
+                justify-content: space-between;
                 right: calc((100vw - 100%) / -2);
                 bottom: -30px;
                 border-top-right-radius: 0;
@@ -901,6 +903,7 @@ while ( have_posts() ) :
             .promo-offer.reverse .promo-price-ribbon {
                 left: calc((100vw - 100%) / -2);
                 right: auto;
+                padding: 10px 18px 10px 24px;
                 border-top-left-radius: 0;
                 border-bottom-left-radius: 0;
                 border-top-right-radius: 16px;
