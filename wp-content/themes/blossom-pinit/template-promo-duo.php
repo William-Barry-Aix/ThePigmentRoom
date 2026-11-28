@@ -890,14 +890,21 @@ while ( have_posts() ) :
             }
 
             .promo-price-ribbon {
-                max-width: calc(100% - 20px);
+                max-width: min(92vw, 420px);
                 padding: 10px 14px;
-                right: 10px;
+                right: -10px;
                 bottom: -30px;
+                border-top-right-radius: 0;
+                border-bottom-right-radius: 0;
             }
 
             .promo-offer.reverse .promo-price-ribbon {
-                left: 10px;
+                left: -10px;
+                right: auto;
+                border-top-left-radius: 0;
+                border-bottom-left-radius: 0;
+                border-top-right-radius: 16px;
+                border-bottom-right-radius: 16px;
             }
 
             .promo-detail-grid {
