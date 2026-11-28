@@ -765,6 +765,12 @@ while ( have_posts() ) :
 
         .promo-offer.reverse .promo-copy {
             text-align: right;
+            justify-items: end;
+        }
+
+        .promo-offer-lashlift .promo-copy {
+            text-align: right;
+            justify-items: end;
         }
 
         .promo-title {
@@ -786,6 +792,11 @@ while ( have_posts() ) :
             margin-left: auto;
         }
 
+        .promo-offer-lashlift .promo-description {
+            margin-left: auto;
+            text-align: right;
+        }
+
         .promo-price-ribbon {
             margin: 0;
             width: fit-content;
@@ -800,7 +811,7 @@ while ( have_posts() ) :
             padding: 12px 20px;
             position: absolute;
             right: -18px;
-            bottom: 14px;
+            bottom: -20px;
             z-index: 3;
         }
 
@@ -844,6 +855,16 @@ while ( have_posts() ) :
                 margin-left: 0;
             }
 
+            .promo-offer-lashlift .promo-copy {
+                text-align: right;
+                justify-items: end;
+            }
+
+            .promo-offer-lashlift .promo-description {
+                text-align: right;
+                margin-left: auto;
+            }
+
             .promo-duo-band {
                 text-align: left;
                 padding: 14px 16px;
@@ -853,7 +874,7 @@ while ( have_posts() ) :
                 max-width: calc(100% - 20px);
                 padding: 10px 14px;
                 right: 10px;
-                bottom: 10px;
+                bottom: -14px;
             }
 
             .promo-offer.reverse .promo-price-ribbon {
