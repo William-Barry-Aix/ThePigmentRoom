@@ -627,11 +627,21 @@ while ( have_posts() ) :
         .promo-duo-band-light {
             background: #fff;
             color: var(--promo-ink);
+            font-family: 'MuseoModerno', var(--primary-font), sans-serif;
         }
 
         .promo-duo-band-dark {
             background: #2a1c1c;
             color: #fff;
+            font-family: 'Poppins', var(--secondary-font), sans-serif;
+        }
+
+        .promo-duo-band-light .promo-duo-band-title {
+            font-family: 'MuseoModerno', var(--primary-font), sans-serif;
+        }
+
+        .promo-duo-band-dark .promo-duo-band-title {
+            font-family: 'Poppins', var(--secondary-font), sans-serif;
         }
 
         .promo-duo-band-title {
