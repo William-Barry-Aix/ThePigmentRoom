@@ -631,13 +631,14 @@ while ( have_posts() ) :
         }
 
         .promo-duo-band-dark {
-            background: #2a1c1c;
+            background: #4e1c06;
             color: #fff;
             font-family: 'Poppins', var(--secondary-font), sans-serif;
         }
 
         .promo-duo-band-light .promo-duo-band-title {
             font-family: 'MuseoModerno', var(--primary-font), sans-serif;
+            color: #4e1c06;
             font-size: clamp(3.4rem, 8.4vw, 6.4rem);
             font-weight: 800;
             font-style: italic;
@@ -712,12 +713,12 @@ while ( have_posts() ) :
 
         .promo-detail-card-title-light {
             background: #fff;
-            color: var(--promo-ink);
+            color: #4e1c06;
             border-bottom: 1px solid var(--promo-border);
         }
 
         .promo-detail-card-title-dark {
-            background: #1c1212;
+            background: #4e1c06;
             color: #fff;
         }
 
