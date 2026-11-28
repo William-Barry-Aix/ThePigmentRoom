@@ -893,7 +893,7 @@ while ( have_posts() ) :
                 max-width: calc(100% - 20px);
                 padding: 10px 14px;
                 right: 10px;
-                bottom: -20px;
+                bottom: -30px;
             }
 
             .promo-offer.reverse .promo-price-ribbon {
