@@ -638,6 +638,10 @@ while ( have_posts() ) :
 
         .promo-duo-band-light .promo-duo-band-title {
             font-family: 'MuseoModerno', var(--primary-font), sans-serif;
+            font-size: clamp(2.2rem, 5.2vw, 3.8rem);
+            font-weight: 800;
+            font-style: italic;
+            line-height: 0.9;
         }
 
         .promo-duo-band-dark .promo-duo-band-title {
