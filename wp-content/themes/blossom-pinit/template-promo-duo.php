@@ -709,6 +709,7 @@ while ( have_posts() ) :
             margin: 0;
             line-height: 1.6;
             font-size: clamp(0.98rem, 1.9vw, 1.12rem);
+            color: #4e1c06;
         }
 
         .promo-detail-card-title-light {
@@ -794,6 +795,7 @@ while ( have_posts() ) :
             font-size: clamp(2rem, 4.1vw, 3.5rem);
             line-height: 0.95;
             text-transform: uppercase;
+            color: #4e1c06;
         }
 
         .promo-description {
@@ -801,6 +803,7 @@ while ( have_posts() ) :
             font-size: clamp(1rem, 2.2vw, 1.2rem);
             line-height: 1.55;
             max-width: 36ch;
+            color: #4e1c06;
         }
 
         .promo-offer.reverse .promo-description {
