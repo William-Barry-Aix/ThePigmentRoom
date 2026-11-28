@@ -905,6 +905,7 @@ while ( have_posts() ) :
                 left: calc((100vw - 100%) / -2);
                 right: auto;
                 padding: 10px 18px;
+                justify-content: flex-end;
                 border-top-left-radius: 0;
                 border-bottom-left-radius: 0;
                 border-top-right-radius: 16px;
