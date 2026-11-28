@@ -732,6 +732,7 @@ while ( have_posts() ) :
             overflow: visible;
             background: var(--promo-paper);
             box-shadow: var(--promo-shadow);
+            margin-bottom: 16px;
         }
 
         .promo-offer,
@@ -829,7 +830,7 @@ while ( have_posts() ) :
             padding: 12px 20px;
             position: absolute;
             right: -18px;
-            bottom: -20px;
+            bottom: -30px;
             z-index: 3;
         }
 
@@ -892,7 +893,7 @@ while ( have_posts() ) :
                 max-width: calc(100% - 20px);
                 padding: 10px 14px;
                 right: 10px;
-                bottom: -14px;
+                bottom: -20px;
             }
 
             .promo-offer.reverse .promo-price-ribbon {
