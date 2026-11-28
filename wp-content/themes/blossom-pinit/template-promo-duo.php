@@ -682,7 +682,7 @@ while ( have_posts() ) :
 
         .promo-detail-card-title {
             margin: 0;
-            font-family: var(--secondary-font);
+            font-family: 'MuseoModerno', var(--primary-font), sans-serif;
             text-transform: uppercase;
             letter-spacing: 0.08em;
             font-size: clamp(1.3rem, 2.4vw, 1.9rem);
