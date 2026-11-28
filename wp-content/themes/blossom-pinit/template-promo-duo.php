@@ -892,14 +892,14 @@ while ( have_posts() ) :
             .promo-price-ribbon {
                 max-width: min(92vw, 420px);
                 padding: 10px 14px;
-                right: -10px;
+                right: calc((100vw - 100%) / -2);
                 bottom: -30px;
                 border-top-right-radius: 0;
                 border-bottom-right-radius: 0;
             }
 
             .promo-offer.reverse .promo-price-ribbon {
-                left: -10px;
+                left: calc((100vw - 100%) / -2);
                 right: auto;
                 border-top-left-radius: 0;
                 border-bottom-left-radius: 0;
