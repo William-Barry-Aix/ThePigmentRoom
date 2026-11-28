@@ -58,6 +58,7 @@ while ( have_posts() ) :
 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=MuseoModerno:wght@400;500;600;700;800&display=swap');
 
         .promo-duo-page {
             --promo-bg: #f6eee7;
@@ -717,6 +718,14 @@ while ( have_posts() ) :
             box-shadow: var(--promo-shadow);
         }
 
+        .promo-offer,
+        .promo-offer .promo-description,
+        .promo-offer .promo-price-ribbon,
+        .promo-offer .promo-price-now,
+        .promo-offer .promo-price-was {
+            font-family: 'MuseoModerno', var(--primary-font), sans-serif;
+        }
+
         .promo-offer.reverse .promo-media {
             order: 2;
         }
@@ -760,7 +769,7 @@ while ( have_posts() ) :
 
         .promo-title {
             margin: 0;
-            font-family: var(--secondary-font);
+            font-family: 'MuseoModerno', var(--primary-font), sans-serif;
             font-size: clamp(2rem, 4.1vw, 3.5rem);
             line-height: 0.95;
             text-transform: uppercase;
