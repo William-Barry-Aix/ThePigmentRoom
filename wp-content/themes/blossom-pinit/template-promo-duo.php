@@ -818,8 +818,8 @@ while ( have_posts() ) :
         .promo-price-ribbon {
             margin: 0;
             width: fit-content;
-            background: var(--promo-paper);
-            color: var(--promo-ink);
+            background: #4e1c06;
+            color: #fff;
             border: 1px solid var(--promo-border);
             border-radius: 16px;
             box-shadow: 0 12px 26px rgba(34, 20, 20, 0.2);
@@ -849,7 +849,7 @@ while ( have_posts() ) :
             opacity: 0.75;
             text-decoration: line-through;
             text-decoration-thickness: 2px;
-            text-decoration-color: rgba(34, 20, 20, 0.45);
+            text-decoration-color: rgba(255, 255, 255, 0.6);
         }
 
         @media only screen and (max-width: 900px) {
